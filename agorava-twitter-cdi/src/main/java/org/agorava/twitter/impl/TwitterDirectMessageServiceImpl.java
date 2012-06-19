@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.agorava.TwitterBaseService;
-import org.agorava.core.cdi.utils.URLUtils;
+import org.agorava.core.utils.URLUtils;
 import org.agorava.twitter.TwitterDirectMessageService;
 import org.agorava.twitter.model.DirectMessage;
 

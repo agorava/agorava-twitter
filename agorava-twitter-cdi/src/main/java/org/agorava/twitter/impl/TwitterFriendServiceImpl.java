@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.agorava.TwitterBaseService;
-import org.agorava.core.cdi.utils.URLUtils;
+import org.agorava.core.utils.URLUtils;
 import org.agorava.twitter.impl.TwitterUserServiceImpl.TwitterProfileList;
 import org.agorava.twitter.model.CursoredList;
 import org.agorava.twitter.model.TwitterProfile;

@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.agorava.TwitterBaseService;
-import org.agorava.core.cdi.utils.URLUtils;
+import org.agorava.core.utils.URLUtils;
 import org.agorava.twitter.TwitterUserService;
 import org.agorava.twitter.model.ImageSize;
 import org.agorava.twitter.model.RateLimitStatus;
