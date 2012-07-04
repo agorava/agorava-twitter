@@ -18,23 +18,24 @@
  */
 package org.agorava;
 
-import java.lang.annotation.Annotation;
+import org.agorava.core.api.event.OAuthComplete;
+import org.agorava.core.api.event.SocialEvent.Status;
+import org.agorava.core.cdi.AbstractSocialMediaApiHub;
+import org.agorava.twitter.impl.TwitterUserServiceImpl;
+import org.jboss.solder.logging.Logger;
 
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
-
-import org.agorava.core.api.event.OAuthComplete;
-import org.agorava.core.api.event.SocialEvent.Status;
-import org.agorava.core.cdi.AbstractSocialNetworkServicesHub;
-import org.agorava.twitter.impl.TwitterUserServiceImpl;
-import org.jboss.solder.logging.Logger;
+import java.lang.annotation.Annotation;
 
 /**
  * @author Antoine Sabot-Durand
  */
 
-public class TwitterServicesHub extends AbstractSocialNetworkServicesHub {
+public class TwitterServicesHub extends AbstractSocialMediaApiHub {
+
+    private static final String MEDIA_NAME = "Twitter";
 
     @Inject
     Logger log;
@@ -53,4 +54,8 @@ public class TwitterServicesHub extends AbstractSocialNetworkServicesHub {
             oauthComplete.getEventData().setUserProfile(services.select(TwitterUserServiceImpl.class).get().getUserProfile());
     }
 
+    @Override
+    public String getSocialMediaName() {
+        return MEDIA_NAME;
+    }
 }

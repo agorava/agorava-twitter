@@ -16,15 +16,8 @@
 
 package org.agorava.twitter.cdi.test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Date;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import org.agorava.Twitter;
-import org.agorava.core.api.SocialNetworkServicesHub;
+import org.agorava.core.api.SocialMediaApiHub;
 import org.agorava.core.api.oauth.OAuthToken;
 import org.agorava.core.cdi.scribe.OAuthTokenScribe;
 import org.agorava.twitter.TwitterTimelineService;
@@ -48,12 +41,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.inject.Inject;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Date;
+import java.util.List;
+
 @RunWith(Arquillian.class)
 public class TwitterTest {
 
     @Inject
     @Twitter
-    SocialNetworkServicesHub serviceHub;
+    SocialMediaApiHub serviceHub;
 
     @Inject
     TwitterTimelineService tl;

@@ -18,13 +18,13 @@
  */
 package org.agorava.twitter.cdi.test;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
-
 import org.agorava.Twitter;
 import org.agorava.TwitterServicesHub;
-import org.agorava.core.api.SocialNetworkServicesHub;
+import org.agorava.core.api.SocialMediaApiHub;
 import org.agorava.core.cdi.oauth.OAuthApplication;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Produces;
 
 /**
  * @author antoine
@@ -35,7 +35,7 @@ public class TwitterServiceProducer {
     @ApplicationScoped
     @OAuthApplication(apiKey = "FQzlQC49UhvbMZoxUIvHTQ", apiSecret = "VQ5CZHG4qUoAkUUmckPn4iN4yyjBKcORTW0wnok4r1k")
     @Produces
-    public SocialNetworkServicesHub OAuthSettinsProducer(TwitterServicesHub service) {
+    public SocialMediaApiHub OAuthSettinsProducer(TwitterServicesHub service) {
         return service;
     }
 
