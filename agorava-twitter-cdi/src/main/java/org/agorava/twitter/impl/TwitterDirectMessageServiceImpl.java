@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Agorava
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,24 +14,23 @@
  * limitations under the License.
  ******************************************************************************/
 /**
- * 
+ *
  */
 package org.agorava.twitter.impl;
-
-import static com.google.common.collect.Maps.newHashMap;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import org.agorava.TwitterBaseService;
 import org.agorava.core.utils.URLUtils;
 import org.agorava.twitter.TwitterDirectMessageService;
 import org.agorava.twitter.model.DirectMessage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static com.google.common.collect.Maps.newHashMap;
+
 /**
  * @author Antoine Sabot-Durand
- * 
  */
 public class TwitterDirectMessageServiceImpl extends TwitterBaseService implements TwitterDirectMessageService {
 
@@ -53,7 +52,7 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
     public List<DirectMessage> getDirectMessagesReceived(int page, int pageSize, long sinceId, long maxId) {
 
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
-        return getService().getForObject(buildUri("direct_messages.json", parameters), DirectMessageList.class);
+        return getService().get(buildUri("direct_messages.json", parameters), DirectMessageList.class);
     }
 
     @Override
@@ -70,13 +69,13 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
     public List<DirectMessage> getDirectMessagesSent(int page, int pageSize, long sinceId, long maxId) {
 
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
-        return getService().getForObject(buildUri("direct_messages/sent.json", parameters), DirectMessageList.class);
+        return getService().get(buildUri("direct_messages/sent.json", parameters), DirectMessageList.class);
     }
 
     @Override
     public DirectMessage getDirectMessage(long id) {
 
-        return getService().getForObject(buildUri("direct_messages/show/" + id + ".json"), DirectMessage.class);
+        return getService().get(buildUri("direct_messages/show/" + id + ".json"), DirectMessage.class);
     }
 
     @Override
@@ -85,7 +84,7 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
         Map<String, Object> data = newHashMap();
         data.put("screen_name", String.valueOf(toScreenName));
         data.put("text", text);
-        return getService().postForObject(buildUri("direct_messages/new.json"), data, DirectMessage.class);
+        return getService().post(buildUri("direct_messages/new.json"), data, DirectMessage.class);
     }
 
     @Override
@@ -94,7 +93,7 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
         Map<String, Object> data = newHashMap();
         data.put("user_id", String.valueOf(toUserId));
         data.put("text", text);
-        return getService().postForObject(buildUri("direct_messages/new.json"), data, DirectMessage.class);
+        return getService().post(buildUri("direct_messages/new.json"), data, DirectMessage.class);
     }
 
     @Override

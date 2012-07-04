@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Agorava
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,17 +14,9 @@
  * limitations under the License.
  ******************************************************************************/
 /**
- * 
+ *
  */
 package org.agorava.twitter.impl;
-
-import static com.google.common.collect.Maps.newHashMap;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Named;
 
 import org.agorava.TwitterBaseService;
 import org.agorava.core.utils.URLUtils;
@@ -34,10 +26,16 @@ import org.agorava.twitter.model.StatusDetails;
 import org.agorava.twitter.model.Tweet;
 import org.agorava.twitter.model.TwitterProfile;
 
+import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static com.google.common.collect.Maps.newHashMap;
+
 /**
  * @author Antoine Sabot-Durand
  * @author Craig Walls
- * 
  */
 @Named
 public class TwitterTimelineServiceImpl extends TwitterBaseService implements TwitterTimelineService {
@@ -48,7 +46,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
 
     @Override
     public List<Tweet> getPublicTimeline() {
-        return getService().getForObject(buildUri(PUBLIC_TIMELINE_URL), TweetList.class);
+        return getService().get(buildUri(PUBLIC_TIMELINE_URL), TweetList.class);
     }
 
     @Override
@@ -64,7 +62,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     @Override
     public List<Tweet> getHomeTimeline(int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
-        return getService().getForObject(buildUri(HOME_TIMELINE_URL, parameters), TweetList.class);
+        return getService().get(buildUri(HOME_TIMELINE_URL, parameters), TweetList.class);
     }
 
     @Override
@@ -80,7 +78,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     @Override
     public List<Tweet> getUserTimeline(int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
-        return getService().getForObject(buildUri(USER_TIMELINE_URL, parameters), TweetList.class);
+        return getService().get(buildUri(USER_TIMELINE_URL, parameters), TweetList.class);
     }
 
     @Override
@@ -97,7 +95,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     public List<Tweet> getUserTimeline(String screenName, int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
         parameters.put("screen_name", screenName);
-        return getService().getForObject(buildUri(USER_TIMELINE_URL, parameters), TweetList.class);
+        return getService().get(buildUri(USER_TIMELINE_URL, parameters), TweetList.class);
     }
 
     @Override
@@ -114,7 +112,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     public List<Tweet> getUserTimeline(long userId, int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
         parameters.put("user_id", String.valueOf(userId));
-        return getService().getForObject(buildUri(USER_TIMELINE_URL, parameters), TweetList.class);
+        return getService().get(buildUri(USER_TIMELINE_URL, parameters), TweetList.class);
     }
 
     @Override
@@ -130,7 +128,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     @Override
     public List<Tweet> getMentions(int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
-        return getService().getForObject(buildUri("statuses/mentions.json", parameters), TweetList.class);
+        return getService().get(buildUri("statuses/mentions.json", parameters), TweetList.class);
     }
 
     @Override
@@ -146,7 +144,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     @Override
     public List<Tweet> getRetweetedByMe(int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
-        return getService().getForObject(buildUri("statuses/retweeted_by_me.json", parameters), TweetList.class);
+        return getService().get(buildUri("statuses/retweeted_by_me.json", parameters), TweetList.class);
     }
 
     @Override
@@ -163,7 +161,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     public List<Tweet> getRetweetedByUser(long userId, int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
         parameters.put("user_id", String.valueOf(userId));
-        return getService().getForObject(buildUri("statuses/retweeted_by_user.json", parameters), TweetList.class);
+        return getService().get(buildUri("statuses/retweeted_by_user.json", parameters), TweetList.class);
     }
 
     @Override
@@ -180,7 +178,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     public List<Tweet> getRetweetedByUser(String screenName, int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
         parameters.put("screen_name", screenName);
-        return getService().getForObject(buildUri("statuses/retweeted_by_user.json", parameters), TweetList.class);
+        return getService().get(buildUri("statuses/retweeted_by_user.json", parameters), TweetList.class);
     }
 
     @Override
@@ -196,7 +194,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     @Override
     public List<Tweet> getRetweetedToMe(int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
-        return getService().getForObject(buildUri("statuses/retweeted_to_me.json", parameters), TweetList.class);
+        return getService().get(buildUri("statuses/retweeted_to_me.json", parameters), TweetList.class);
     }
 
     @Override
@@ -213,7 +211,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     public List<Tweet> getRetweetedToUser(long userId, int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
         parameters.put("user_id", String.valueOf(userId));
-        return getService().getForObject(buildUri("statuses/retweeted_to_user.json", parameters), TweetList.class);
+        return getService().get(buildUri("statuses/retweeted_to_user.json", parameters), TweetList.class);
     }
 
     @Override
@@ -230,7 +228,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     public List<Tweet> getRetweetedToUser(String screenName, int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
         parameters.put("screen_name", screenName);
-        return getService().getForObject(buildUri("statuses/retweeted_to_user.json", parameters), TweetList.class);
+        return getService().get(buildUri("statuses/retweeted_to_user.json", parameters), TweetList.class);
     }
 
     @Override
@@ -246,12 +244,12 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     @Override
     public List<Tweet> getRetweetsOfMe(int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
-        return getService().getForObject(buildUri("statuses/retweets_of_me.json", parameters), TweetList.class);
+        return getService().get(buildUri("statuses/retweets_of_me.json", parameters), TweetList.class);
     }
 
     @Override
     public Tweet getStatus(long tweetId) {
-        return getService().getForObject(buildUri("statuses/show/" + tweetId + ".json"), Tweet.class);
+        return getService().get(buildUri("statuses/show/" + tweetId + ".json"), Tweet.class);
     }
 
     @Override
@@ -267,7 +265,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
         Map<String, Object> tweetParams = newHashMap();
         tweetParams.put("status", message);
         tweetParams.putAll(details.toParameterMap());
-        return getService().postForObject(buildUri("statuses/update.json"), tweetParams, Tweet.class);
+        return getService().post(buildUri("statuses/update.json"), tweetParams, Tweet.class);
     }
 
     // public Tweet updateStatus(String message, Resource media, StatusDetails details) {
@@ -276,7 +274,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     // tweetParams.add("status", message);
     // tweetParams.add("media", media);
     // tweetParams.putAll(details.toParameterMap());
-    // return restTemplate.getService().postForObject("https://upload.twitter.com/1/statuses/update_with_media.json",
+    // return restTemplate.getService().post("https://upload.twitter.com/1/statuses/update_with_media.json",
     // tweetParams,
     // Tweet.class);
     // }
@@ -289,7 +287,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     @Override
     public void retweet(long tweetId) {
         Map<String, Object> data = newHashMap();
-        getService().postForObject(buildUri("statuses/retweet/" + tweetId + ".json"), data, String.class);
+        getService().post(buildUri("statuses/retweet/" + tweetId + ".json"), data, String.class);
     }
 
     @Override
@@ -301,7 +299,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     public List<Tweet> getRetweets(long tweetId, int count) {
         Map<String, String> parameters = newHashMap();
         parameters.put("count", String.valueOf(count));
-        return getService().getForObject(buildUri("statuses/retweets/" + tweetId + ".json", parameters), TweetList.class);
+        return getService().get(buildUri("statuses/retweets/" + tweetId + ".json", parameters), TweetList.class);
     }
 
     @Override
@@ -312,7 +310,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     @Override
     public List<TwitterProfile> getRetweetedBy(long tweetId, int page, int pageSize) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, 0, 0);
-        return getService().getForObject(buildUri("statuses/" + tweetId + "/retweeted_by.json", parameters),
+        return getService().get(buildUri("statuses/" + tweetId + "/retweeted_by.json", parameters),
                 TwitterProfileList.class);
     }
 
@@ -326,7 +324,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
         // requires authentication, even though getRetweetedBy() does not.
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, 0, 0);
         return getService()
-                .getForObject(buildUri("statuses/" + tweetId + "/retweeted_by/ids.json", parameters), LongList.class);
+                .get(buildUri("statuses/" + tweetId + "/retweeted_by/ids.json", parameters), LongList.class);
     }
 
     @Override
@@ -339,19 +337,19 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
         // Note: The documentation for favorites.json doesn't list the count parameter, but it works
         // anyway.
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, 0, 0);
-        return getService().getForObject(buildUri("favorites.json", parameters), TweetList.class);
+        return getService().get(buildUri("favorites.json", parameters), TweetList.class);
     }
 
     @Override
     public void addToFavorites(long tweetId) {
         Map<String, Object> data = newHashMap();
-        getService().postForObject(buildUri("favorites/create/" + tweetId + ".json"), data, String.class);
+        getService().post(buildUri("favorites/create/" + tweetId + ".json"), data, String.class);
     }
 
     @Override
     public void removeFromFavorites(long tweetId) {
         Map<String, Object> data = newHashMap();
-        getService().postForObject(buildUri("favorites/destroy/" + tweetId + ".json"), data, String.class);
+        getService().post(buildUri("favorites/destroy/" + tweetId + ".json"), data, String.class);
     }
 
     @SuppressWarnings("serial")

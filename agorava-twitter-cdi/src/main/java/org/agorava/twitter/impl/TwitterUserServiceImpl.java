@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Agorava
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,13 +14,9 @@
  * limitations under the License.
  ******************************************************************************/
 /**
- * 
+ *
  */
 package org.agorava.twitter.impl;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import org.agorava.TwitterBaseService;
 import org.agorava.core.utils.URLUtils;
@@ -33,15 +29,18 @@ import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author Antoine Sabot-Durand
- * 
  */
 public class TwitterUserServiceImpl extends TwitterBaseService implements TwitterUserService {
 
     /**
      * Typed list of TwitterProfile. This helps Jackson know which type to deserialize list contents into.
-     * 
+     *
      * @author Craig Walls
      * @author Antoine Sabot-Durand
      */
@@ -88,12 +87,12 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
 
     @Override
     public TwitterProfile getUserProfile(String screenName) {
-        return getService().getForObject(buildUri(GET_USER_PROFILE_URL, "screen_name", screenName), TwitterProfile.class);
+        return getService().get(buildUri(GET_USER_PROFILE_URL, "screen_name", screenName), TwitterProfile.class);
     }
 
     @Override
     public TwitterProfile getUserProfile(long userId) {
-        return getService().getForObject(buildUri(GET_USER_PROFILE_URL, "user_id", String.valueOf(userId)),
+        return getService().get(buildUri(GET_USER_PROFILE_URL, "user_id", String.valueOf(userId)),
                 TwitterProfile.class);
     }
 
@@ -110,13 +109,13 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
     @Override
     public List<TwitterProfile> getUsers(String... userIds) {
         String joinedIds = URLUtils.commaJoiner.join(userIds);
-        return getService().getForObject(buildUri(LOOKUP, "user_id", joinedIds), TwitterProfileList.class);
+        return getService().get(buildUri(LOOKUP, "user_id", joinedIds), TwitterProfileList.class);
     }
 
     @Override
     public List<TwitterProfile> getUsersByName(String... screenNames) {
         String joinedScreenNames = URLUtils.commaJoiner.join(screenNames);
-        return getService().getForObject(buildUri(LOOKUP, "screen_name", joinedScreenNames), TwitterProfileList.class);
+        return getService().get(buildUri(LOOKUP, "screen_name", joinedScreenNames), TwitterProfileList.class);
     }
 
     @Override
@@ -128,28 +127,28 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
     public List<TwitterProfile> searchForUsers(String query, int page, int pageSize) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithPerPage(page, pageSize, 0, 0);
         parameters.put("q", query);
-        return getService().getForObject(buildUri(SEARCH_USER_URL, parameters), TwitterProfileList.class);
+        return getService().get(buildUri(SEARCH_USER_URL, parameters), TwitterProfileList.class);
     }
 
     @Override
     public List<SuggestionCategory> getSuggestionCategories() {
-        return getService().getForObject(buildUri(SUGGESTION_CATEGORIES), SuggestionCategoryList.class);
+        return getService().get(buildUri(SUGGESTION_CATEGORIES), SuggestionCategoryList.class);
     }
 
     @Override
     public List<TwitterProfile> getSuggestions(String slug) {
-        return getService().getForObject(buildUri("users/suggestions/" + slug + ".json"), TwitterProfileUsersList.class)
+        return getService().get(buildUri("users/suggestions/" + slug + ".json"), TwitterProfileUsersList.class)
                 .getList();
     }
 
     @Override
     public RateLimitStatus getRateLimitStatus() {
-        return getService().getForObject(buildUri(RATE_LIMIT_STATUS), RateLimitStatus.class);
+        return getService().get(buildUri(RATE_LIMIT_STATUS), RateLimitStatus.class);
     }
 
     @Override
     public TwitterProfile getUserProfile() {
-        return getService().getForObject(buildUri(VERIFY_CREDENTIALS_URL), TwitterProfile.class);
+        return getService().get(buildUri(VERIFY_CREDENTIALS_URL), TwitterProfile.class);
     }
 
 }

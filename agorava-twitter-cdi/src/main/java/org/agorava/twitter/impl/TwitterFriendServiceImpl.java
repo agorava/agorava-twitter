@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Agorava
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,15 +14,9 @@
  * limitations under the License.
  ******************************************************************************/
 /**
- * 
+ *
  */
 package org.agorava.twitter.impl;
-
-import static com.google.common.collect.Maps.newHashMap;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import org.agorava.TwitterBaseService;
 import org.agorava.core.utils.URLUtils;
@@ -30,10 +24,15 @@ import org.agorava.twitter.impl.TwitterUserServiceImpl.TwitterProfileList;
 import org.agorava.twitter.model.CursoredList;
 import org.agorava.twitter.model.TwitterProfile;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static com.google.common.collect.Maps.newHashMap;
+
 /**
  * @author Antoine Sabot-Durand
  * @author Craig Walls
- * 
  */
 public class TwitterFriendServiceImpl extends TwitterBaseService implements org.agorava.twitter.TwitterFriendService {
 
@@ -79,7 +78,7 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
     public CursoredList<Long> getFriendIdsInCursor(long cursor) {
 
         return getService()
-                .getForObject(buildUri("friends/ids.json", "cursor", String.valueOf(cursor)), CursoredLongList.class).getList();
+                .get(buildUri("friends/ids.json", "cursor", String.valueOf(cursor)), CursoredLongList.class).getList();
     }
 
     @Override
@@ -92,7 +91,7 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
         Map<String, String> parameters = newHashMap();
         parameters.put("cursor", String.valueOf(cursor));
         parameters.put("user_id", String.valueOf(userId));
-        return getService().getForObject(buildUri("friends/ids.json", parameters), CursoredLongList.class).getList();
+        return getService().get(buildUri("friends/ids.json", parameters), CursoredLongList.class).getList();
     }
 
     @Override
@@ -105,7 +104,7 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
         Map<String, String> parameters = newHashMap();
         parameters.put("cursor", String.valueOf(cursor));
         parameters.put("screen_name", screenName);
-        return getService().getForObject(buildUri("friends/ids.json", parameters), CursoredLongList.class).getList();
+        return getService().get(buildUri("friends/ids.json", parameters), CursoredLongList.class).getList();
     }
 
     @Override
@@ -149,7 +148,7 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
     @Override
     public CursoredList<Long> getFollowerIdsInCursor(long cursor) {
 
-        return getService().getForObject(buildUri("followers/ids.json", "cursor", String.valueOf(cursor)),
+        return getService().get(buildUri("followers/ids.json", "cursor", String.valueOf(cursor)),
                 CursoredLongList.class).getList();
     }
 
@@ -163,7 +162,7 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
         Map<String, String> parameters = newHashMap();
         parameters.put("cursor", String.valueOf(cursor));
         parameters.put("user_id", String.valueOf(userId));
-        return getService().getForObject(buildUri("followers/ids.json", parameters), CursoredLongList.class).getList();
+        return getService().get(buildUri("followers/ids.json", parameters), CursoredLongList.class).getList();
     }
 
     @Override
@@ -176,62 +175,62 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
         Map<String, String> parameters = newHashMap();
         parameters.put("cursor", String.valueOf(cursor));
         parameters.put("screen_name", screenName);
-        return getService().getForObject(buildUri("followers/ids.json", parameters), CursoredLongList.class).getList();
+        return getService().get(buildUri("followers/ids.json", parameters), CursoredLongList.class).getList();
     }
 
     @Override
     public String follow(long userId) {
 
-        return (String) getService().postForObject(buildUri("friendships/create.json", "user_id", String.valueOf(userId)),
+        return (String) getService().post(buildUri("friendships/create.json", "user_id", String.valueOf(userId)),
                 EMPTY_DATA, Map.class).get("screen_name");
     }
 
     @Override
     public String follow(String screenName) {
 
-        return (String) getService().postForObject(buildUri("friendships/create.json", "screen_name", screenName), EMPTY_DATA,
+        return (String) getService().post(buildUri("friendships/create.json", "screen_name", screenName), EMPTY_DATA,
                 Map.class).get("screen_name");
     }
 
     @Override
     public String unfollow(long userId) {
 
-        return (String) getService().postForObject(buildUri("friendships/destroy.json", "user_id", String.valueOf(userId)),
+        return (String) getService().post(buildUri("friendships/destroy.json", "user_id", String.valueOf(userId)),
                 EMPTY_DATA, Map.class).get("screen_name");
     }
 
     @Override
     public String unfollow(String screenName) {
 
-        return (String) getService().postForObject(buildUri("friendships/destroy.json", "screen_name", screenName), EMPTY_DATA,
+        return (String) getService().post(buildUri("friendships/destroy.json", "screen_name", screenName), EMPTY_DATA,
                 Map.class).get("screen_name");
     }
 
     @Override
     public TwitterProfile enableNotifications(long userId) {
 
-        return getService().postForObject(buildUri("notifications/follow.json", "user_id", String.valueOf(userId)), EMPTY_DATA,
+        return getService().post(buildUri("notifications/follow.json", "user_id", String.valueOf(userId)), EMPTY_DATA,
                 TwitterProfile.class);
     }
 
     @Override
     public TwitterProfile enableNotifications(String screenName) {
 
-        return getService().postForObject(buildUri("notifications/follow.json", "screen_name", screenName), EMPTY_DATA,
+        return getService().post(buildUri("notifications/follow.json", "screen_name", screenName), EMPTY_DATA,
                 TwitterProfile.class);
     }
 
     @Override
     public TwitterProfile disableNotifications(long userId) {
 
-        return getService().postForObject(buildUri("notifications/leave.json", "user_id", String.valueOf(userId)), EMPTY_DATA,
+        return getService().post(buildUri("notifications/leave.json", "user_id", String.valueOf(userId)), EMPTY_DATA,
                 TwitterProfile.class);
     }
 
     @Override
     public TwitterProfile disableNotifications(String screenName) {
 
-        return getService().postForObject(buildUri("notifications/leave.json", "screen_name", screenName), EMPTY_DATA,
+        return getService().post(buildUri("notifications/leave.json", "screen_name", screenName), EMPTY_DATA,
                 TwitterProfile.class);
     }
 
@@ -239,7 +238,7 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
     @Override
     public boolean friendshipExists(String userA, String userB) {
         Map<String, String> params = newHashMap();
-        return getService().getForObject(buildUri("friendships/exists.json", params), boolean.class);
+        return getService().get(buildUri("friendships/exists.json", params), boolean.class);
     }
 
     @Override
@@ -250,7 +249,7 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
     @Override
     public CursoredList<Long> getIncomingFriendships(long cursor) {
 
-        return getService().getForObject(buildUri("friendships/incoming.json", "cursor", String.valueOf(cursor)),
+        return getService().get(buildUri("friendships/incoming.json", "cursor", String.valueOf(cursor)),
                 CursoredLongList.class).getList();
     }
 
@@ -262,7 +261,7 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
     @Override
     public CursoredList<Long> getOutgoingFriendships(long cursor) {
 
-        return getService().getForObject(buildUri("friendships/outgoing.json", "cursor", String.valueOf(cursor)),
+        return getService().get(buildUri("friendships/outgoing.json", "cursor", String.valueOf(cursor)),
                 CursoredLongList.class).getList();
     }
 
@@ -272,7 +271,7 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
         CursoredList<TwitterProfile> users = new CursoredList<TwitterProfile>(userIds.size(), previousCursor, nextCursor);
         for (List<Long> userIdChunk : chunks) {
             String joinedIds = URLUtils.commaJoiner.join(userIdChunk);
-            users.addAll(getService().getForObject(buildUri("users/lookup.json", "user_id", joinedIds),
+            users.addAll(getService().get(buildUri("users/lookup.json", "user_id", joinedIds),
                     TwitterProfileList.class));
         }
         return users;
