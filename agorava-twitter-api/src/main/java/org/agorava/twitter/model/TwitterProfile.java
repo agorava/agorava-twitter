@@ -1,18 +1,18 @@
-/*******************************************************************************
+/*
  * Copyright 2012 Agorava
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- ******************************************************************************/
+ */
 
 package org.agorava.twitter.model;
 
@@ -22,7 +22,7 @@ import org.agorava.core.api.UserProfile;
 
 /**
  * Model class representing a Twitter user's profile information.
- * 
+ *
  * @author Craig Walls
  * @author Antoine Sabot-Durand
  */
@@ -64,7 +64,7 @@ public class TwitterProfile extends UserProfile {
     private boolean showAllInlineMedia;
 
     public TwitterProfile(String id, String screenName, String name, String url, String profileImageUrl, String description,
-            String location, Date createdDate) {
+                          String location, Date createdDate) {
         super(id);
         this.screenName = screenName;
         this.name = name;
@@ -77,7 +77,7 @@ public class TwitterProfile extends UserProfile {
 
     /**
      * The user's Twitter screen name
-     * 
+     *
      * @return The user's Twitter screen name
      */
     public String getScreenName() {
@@ -86,7 +86,7 @@ public class TwitterProfile extends UserProfile {
 
     /**
      * The user's full name
-     * 
+     *
      * @return The user's full name
      */
     public String getName() {
@@ -95,7 +95,7 @@ public class TwitterProfile extends UserProfile {
 
     /**
      * The user's URL
-     * 
+     *
      * @return The user's URL
      */
     public String getUrl() {
@@ -104,7 +104,7 @@ public class TwitterProfile extends UserProfile {
 
     /**
      * The user's description
-     * 
+     *
      * @return The user's description
      */
     public String getDescription() {
@@ -113,7 +113,7 @@ public class TwitterProfile extends UserProfile {
 
     /**
      * The user's location
-     * 
+     *
      * @return The user's location
      */
     public String getLocation() {
@@ -124,7 +124,7 @@ public class TwitterProfile extends UserProfile {
      * <p>
      * The URL of the user's profile image in "normal" size (48x48).
      * </p>
-     * 
+     *
      * @return The URL of the user's normal-sized profile image.
      */
     @Override
@@ -136,7 +136,7 @@ public class TwitterProfile extends UserProfile {
      * <p>
      * The URL of the user's profile.
      * </p>
-     * 
+     *
      * @return The URL of the user's profile.
      */
     public String getProfileUrl() {
@@ -145,7 +145,7 @@ public class TwitterProfile extends UserProfile {
 
     /**
      * The date that the Twitter profile was created.
-     * 
+     *
      * @return The date that the Twitter profile was created.
      */
     public Date getCreatedDate() {
