@@ -21,7 +21,7 @@ package org.agorava.twitter.cdi.test;
 import org.agorava.Twitter;
 import org.agorava.TwitterServicesHub;
 import org.agorava.core.api.SocialMediaApiHub;
-import org.agorava.core.cdi.oauth.OAuthApplication;
+import org.agorava.core.oauth.OAuthApplication;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;

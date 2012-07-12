@@ -19,7 +19,7 @@ package org.agorava.twitter.cdi.test;
 import org.agorava.Twitter;
 import org.agorava.core.api.SocialMediaApiHub;
 import org.agorava.core.api.oauth.OAuthToken;
-import org.agorava.core.cdi.scribe.OAuthTokenScribe;
+import org.agorava.core.oauth.scribe.OAuthTokenScribe;
 import org.agorava.twitter.TwitterTimelineService;
 import org.agorava.twitter.TwitterUserService;
 import org.agorava.twitter.model.SuggestionCategory;
