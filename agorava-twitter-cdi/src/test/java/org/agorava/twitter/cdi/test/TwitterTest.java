@@ -30,9 +30,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.GenericArchive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.importer.ZipImporter;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
@@ -65,11 +62,9 @@ public class TwitterTest {
 
         WebArchive ret = ShrinkWrap
                 .create(WebArchive.class, "test.war")
-                .addAsLibraries(
-                        ShrinkWrap.create(ZipImporter.class, "agorava-twitter-api.jar")
-                                .importFrom(new File("../agorava-twitter-api/target/agorava-twitter-api.jar"))
-                                .as(JavaArchive.class)).addPackages(true, "org.agorava")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml").addClass(TwitterServiceProducer.class);
+                .addPackages(true, "org.agorava")
+                .addClass(TwitterServiceProducer.class)
+                .addAsLibraries(new File("../agorava-twitter-api/target/agorava-twitter-api.jar"));
         System.out.println(System.getProperty("arquillian"));
         if (("weld-ee-embedded-1.1".equals(System.getProperty("arquillian")) || System.getProperty("arquillian") == null)) {
             // Don't embed dependencies that are already in the CL in the embedded container from surefire
