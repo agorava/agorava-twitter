@@ -27,8 +27,8 @@ import org.agorava.core.oauth.OAuthApplication;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 
-import static org.agorava.core.api.oauth.SettingsBuilder.API_KEY;
-import static org.agorava.core.api.oauth.SettingsBuilder.API_SECRET;
+import static org.agorava.core.api.oauth.OAuthAppSettingsBuilder.API_KEY;
+import static org.agorava.core.api.oauth.OAuthAppSettingsBuilder.API_SECRET;
 
 /**
  * @author antoine
