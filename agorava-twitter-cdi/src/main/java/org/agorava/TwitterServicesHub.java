@@ -27,7 +27,6 @@ import org.jboss.solder.logging.Logger;
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
-import java.lang.annotation.Annotation;
 
 /**
  * @author Antoine Sabot-Durand
@@ -43,10 +42,6 @@ public class TwitterServicesHub extends AbstractSocialMediaApiHub {
     @Inject
     Instance<TwitterBaseService> services;
 
-    @Override
-    public Annotation getQualifier() {
-        return TwitterLiteral.INSTANCE;
-    }
 
     public void initMyProfile(@Observes @Twitter OAuthComplete oauthComplete) {
         log.debug("**** Initializing Twitter profile ****");
@@ -58,4 +53,6 @@ public class TwitterServicesHub extends AbstractSocialMediaApiHub {
     public String getSocialMediaName() {
         return MEDIA_NAME;
     }
+
+
 }

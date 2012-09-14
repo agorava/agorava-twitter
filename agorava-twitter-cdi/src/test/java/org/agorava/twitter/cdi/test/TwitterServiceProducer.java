@@ -22,7 +22,7 @@ import org.agorava.Twitter;
 import org.agorava.TwitterServicesHub;
 import org.agorava.core.api.SocialMediaApiHub;
 import org.agorava.core.api.oauth.Param;
-import org.agorava.core.oauth.OAuthApplication;
+import org.agorava.core.cdi.OAuthApplication;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;

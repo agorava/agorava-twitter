@@ -16,10 +16,10 @@
 
 package org.agorava;
 
-import java.lang.annotation.Annotation;
-
 import org.agorava.core.api.oauth.OAuthService;
-import org.agorava.core.cdi.AbstractSocialNetworkService;
+import org.agorava.core.cdi.AbstractSocialMediaApi;
+
+import javax.inject.Inject;
 
 /**
  * A specialization of {@link OAuthService} to add TwitterRelated specific methods
@@ -27,18 +27,21 @@ import org.agorava.core.cdi.AbstractSocialNetworkService;
  * @author Antoine Sabot-Durand
  */
 
-public abstract class TwitterBaseService extends AbstractSocialNetworkService {
+public abstract class TwitterBaseService extends AbstractSocialMediaApi {
 
-    static final String API_ROOT = "https://api.twitter.com/1/";
+    public static final String API_ROOT = "https://api.twitter.com/1/";
+
+    @Inject
+    @Twitter
+    private OAuthService service;
 
     @Override
-    public Annotation getQualifier() {
-        return TwitterLiteral.INSTANCE;
+    public String buildUri(String uri) {
+        return API_ROOT + uri;
     }
 
     @Override
-    public String getApiRootUrl() {
-        return API_ROOT;
+    public OAuthService getService() {
+        return service;
     }
-
 }
