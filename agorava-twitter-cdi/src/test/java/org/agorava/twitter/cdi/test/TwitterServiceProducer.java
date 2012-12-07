@@ -23,6 +23,7 @@ import org.agorava.TwitterServicesHub;
 import org.agorava.core.api.SocialMediaApiHub;
 import org.agorava.core.api.oauth.Param;
 import org.agorava.core.cdi.OAuthApplication;
+import org.agorava.core.oauth.SimpleOAuthAppSettingsBuilder;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
@@ -37,7 +38,7 @@ public class TwitterServiceProducer {
 
     @Twitter
     @ApplicationScoped
-    @OAuthApplication(params = {@Param(name = API_KEY, value = "FQzlQC49UhvbMZoxUIvHTQ"),
+    @OAuthApplication(builder = SimpleOAuthAppSettingsBuilder.class, params = {@Param(name = API_KEY, value = "FQzlQC49UhvbMZoxUIvHTQ"),
             @Param(name = API_SECRET, value = "VQ5CZHG4qUoAkUUmckPn4iN4yyjBKcORTW0wnok4r1k")})
     @Produces
     public SocialMediaApiHub OAuthSettinsProducer(TwitterServicesHub service) {
