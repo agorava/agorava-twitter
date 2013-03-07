@@ -93,7 +93,7 @@ public class TwitterTest {
 
     @Test
     public void sendATweet() {
-        Tweet tweet = tl.updateStatus("Tweet sent from JUnit at " + new Date().toString());
+        Tweet tweet = tl.updateStatus("Tweet sent from JUnit in API 1.1 at " + new Date().toString());
         Assert.assertFalse(tweet.getId() == 0);
 
     }

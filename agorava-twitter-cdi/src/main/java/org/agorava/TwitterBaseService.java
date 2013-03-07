@@ -29,7 +29,7 @@ import javax.inject.Inject;
 
 public abstract class TwitterBaseService extends AbstractSocialMediaApi {
 
-    public static final String API_ROOT = "https://api.twitter.com/1/";
+    public static final String API_ROOT = "https://api.twitter.com/1.1/";
 
     @Inject
     @Twitter
