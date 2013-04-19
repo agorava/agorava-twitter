@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -128,7 +128,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     @Override
     public List<Tweet> getMentions(int page, int pageSize, long sinceId, long maxId) {
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
-        return getService().get(buildUri("statuses/mentions.json", parameters), TweetList.class);
+        return getService().get(buildUri("statuses/mentions_timeline.json", parameters), TweetList.class);
     }
 
     @Override
@@ -337,7 +337,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
         // Note: The documentation for favorites.json doesn't list the count parameter, but it works
         // anyway.
         Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, 0, 0);
-        return getService().get(buildUri("favorites.json", parameters), TweetList.class);
+        return getService().get(buildUri("favorites/list.json", parameters), TweetList.class);
     }
 
     @Override
