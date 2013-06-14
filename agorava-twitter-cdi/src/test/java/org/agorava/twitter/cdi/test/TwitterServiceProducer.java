@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,15 +21,10 @@ package org.agorava.twitter.cdi.test;
 import org.agorava.Twitter;
 import org.agorava.TwitterServicesHub;
 import org.agorava.core.api.SocialMediaApiHub;
-import org.agorava.core.api.oauth.Param;
 import org.agorava.core.cdi.OAuthApplication;
-import org.agorava.core.oauth.SimpleOAuthAppSettingsBuilder;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
-
-import static org.agorava.core.api.oauth.OAuthAppSettingsBuilder.API_KEY;
-import static org.agorava.core.api.oauth.OAuthAppSettingsBuilder.API_SECRET;
 
 /**
  * @author antoine
@@ -38,8 +33,7 @@ public class TwitterServiceProducer {
 
     @Twitter
     @ApplicationScoped
-    @OAuthApplication(builder = SimpleOAuthAppSettingsBuilder.class, params = {@Param(name = API_KEY, value = "FQzlQC49UhvbMZoxUIvHTQ"),
-            @Param(name = API_SECRET, value = "VQ5CZHG4qUoAkUUmckPn4iN4yyjBKcORTW0wnok4r1k")})
+    @OAuthApplication
     @Produces
     public SocialMediaApiHub OAuthSettinsProducer(TwitterServicesHub service) {
         return service;
