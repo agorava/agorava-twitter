@@ -26,6 +26,7 @@ import org.agorava.core.oauth.PropertyOAuthAppSettingsBuilder;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
 
 /**
@@ -47,7 +48,7 @@ public class TwitterServiceProducer {
     @Produces
     @Twitter
     @Current
-    public OAuthSession produceOauthSession(OAuthSession session) {
+    public OAuthSession produceOauthSession(@Twitter @Default OAuthSession session) {
         return session;
 
     }
