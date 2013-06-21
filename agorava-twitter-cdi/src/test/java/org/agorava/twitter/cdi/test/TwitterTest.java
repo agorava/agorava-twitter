@@ -17,8 +17,10 @@
 package org.agorava.twitter.cdi.test;
 
 import org.agorava.Twitter;
-import org.agorava.core.api.SocialMediaApiHub;
+import org.agorava.core.api.oauth.OAuthService;
+import org.agorava.core.api.oauth.OAuthSession;
 import org.agorava.core.api.oauth.OAuthToken;
+import org.agorava.core.cdi.Current;
 import org.agorava.core.oauth.scribe.OAuthTokenScribe;
 import org.agorava.twitter.TwitterTimelineService;
 import org.agorava.twitter.TwitterUserService;
@@ -29,6 +31,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Before;
@@ -44,12 +47,19 @@ import java.util.List;
 public class TwitterTest {
 
     @Inject
-    @Twitter
-    SocialMediaApiHub serviceHub;
-    @Inject
     TwitterTimelineService tl;
+
     @Inject
     TwitterUserService userService;
+
+    @Inject
+    @Twitter
+    OAuthService service;
+
+    @Inject
+    @Twitter
+    @Current
+    OAuthSession sessionTest;
 
     @Deployment
     public static Archive<?> createTestArchive() throws FileNotFoundException {
@@ -57,6 +67,7 @@ public class TwitterTest {
         WebArchive ret = ShrinkWrap
                 .create(WebArchive.class, "test.war")
                 .addPackages(true, "org.agorava")
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addClass(TwitterServiceProducer.class);
 
         return ret;
@@ -66,13 +77,13 @@ public class TwitterTest {
     public void init() {
         OAuthToken token = new OAuthTokenScribe("334872715-u75bjYqWyQSYjFMnKeTDZUn8i0QAExjUQ4ENZXH3",
                 "08QG7HVqDjkr1oH1YfBRWmd0n8EG73CuzJgTjFI0sk");
-        serviceHub.getSession().setAccessToken(token);
-        serviceHub.getService().initAccessToken();
+        service.getSession().setAccessToken(token);
+        service.initAccessToken();
     }
 
     @Test
     public void authorizationUrlTest() {
-        Assert.assertTrue(serviceHub.getService().getAuthorizationUrl().startsWith("http"));
+        Assert.assertTrue(service.getAuthorizationUrl().startsWith("http"));
     }
 
     @Test
@@ -90,9 +101,21 @@ public class TwitterTest {
     }
 
     @Test
-    public void SuggestionCaegoriesNotEmpty() {
+    public void suggestionCaegoriesNotEmpty() {
         List<SuggestionCategory> res = userService.getSuggestionCategories();
         Assert.assertFalse(res.isEmpty());
 
+    }
+
+    @Test
+    public void testSessionUnicity() {
+        Assert.assertEquals(sessionTest.getUserProfile(), service.getSession().getUserProfile());
+    }
+
+
+    @Test
+    public void testProfileIsNotNull() {
+        Assert.assertNotNull(service.getSession().getUserProfile());
+        System.out.println(service.getSession().getUserProfile().getFullName());
     }
 }

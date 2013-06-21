@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,10 @@
  */
 package org.agorava.twitter.impl;
 
+import org.agorava.Twitter;
 import org.agorava.TwitterBaseService;
+import org.agorava.core.api.event.OAuthComplete;
+import org.agorava.core.api.event.SocialEvent;
 import org.agorava.core.utils.URLUtils;
 import org.agorava.twitter.TwitterUserService;
 import org.agorava.twitter.model.ImageSize;
@@ -29,6 +32,7 @@ import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import javax.enterprise.event.Observes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +78,13 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
     static final String SUGGESTION_CATEGORIES = "users/suggestions.json";
     static final String LOOKUP = "users/lookup.json";
     static final String RATE_LIMIT_STATUS = "account/rate_limit_status.json";
+
+
+    public void initMyProfile(@Observes @Twitter OAuthComplete oauthComplete) {
+        //     log.debug("**** Initializing Twitter profile ****");
+        if (oauthComplete.getStatus() == SocialEvent.Status.SUCCESS)
+            oauthComplete.getEventData().setUserProfile(getUserProfile());
+    }
 
     @Override
     public String getProfileId() {
