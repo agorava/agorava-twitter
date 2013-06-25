@@ -27,41 +27,32 @@ import org.agorava.twitter.TwitterUserService;
 import org.agorava.twitter.model.SuggestionCategory;
 import org.agorava.twitter.model.Tweet;
 import org.agorava.twitter.model.TwitterProfile;
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
-import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class TwitterTest {
+public class TwitterTest extends TwitterTestDeploy {
 
     @Inject
     TwitterTimelineService tl;
-
     @Inject
     TwitterUserService userService;
-
     @Inject
     @Twitter
     OAuthService service;
-
     @Inject
     @Twitter
     @Current
     OAuthSession sessionTest;
 
-    @Deployment
+/*    @Deployment
     public static Archive<?> createTestArchive() throws FileNotFoundException {
 
         WebArchive ret = ShrinkWrap
@@ -71,7 +62,7 @@ public class TwitterTest {
                 .addClass(TwitterServiceProducer.class);
 
         return ret;
-    }
+    }*/
 
     @Before
     public void init() {
@@ -111,7 +102,6 @@ public class TwitterTest {
     public void testSessionUnicity() {
         Assert.assertEquals(sessionTest.getUserProfile(), service.getSession().getUserProfile());
     }
-
 
     @Test
     public void testProfileIsNotNull() {
