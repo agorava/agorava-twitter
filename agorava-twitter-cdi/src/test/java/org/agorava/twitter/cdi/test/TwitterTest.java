@@ -52,18 +52,6 @@ public class TwitterTest extends TwitterTestDeploy {
     @Current
     OAuthSession sessionTest;
 
-/*    @Deployment
-    public static Archive<?> createTestArchive() throws FileNotFoundException {
-
-        WebArchive ret = ShrinkWrap
-                .create(WebArchive.class, "test.war")
-                .addPackages(true, "org.agorava")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addClass(TwitterServiceProducer.class);
-
-        return ret;
-    }*/
-
     @Before
     public void init() {
         OAuthToken token = new OAuthTokenScribe("334872715-u75bjYqWyQSYjFMnKeTDZUn8i0QAExjUQ4ENZXH3",

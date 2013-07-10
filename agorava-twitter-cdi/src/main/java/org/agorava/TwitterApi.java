@@ -18,7 +18,7 @@
  */
 package org.agorava;
 
-import org.agorava.core.api.oauth.DefaultRootOAuth10a;
+import org.agorava.core.api.oauth.DefaultOAuth10Api;
 //import org.jboss.solder.logging.Logger;
 
 
@@ -27,7 +27,7 @@ import org.agorava.core.api.oauth.DefaultRootOAuth10a;
  */
 
 @Twitter
-public class TwitterRoot extends DefaultRootOAuth10a {
+public class TwitterApi extends DefaultOAuth10Api {
 
     private static final String MEDIA_NAME = "Twitter";
 

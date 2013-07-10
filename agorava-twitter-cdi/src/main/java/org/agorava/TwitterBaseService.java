@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 package org.agorava;
 
 import org.agorava.core.api.oauth.OAuthService;
-import org.agorava.core.cdi.AbstractSocialMediaApi;
+import org.agorava.core.oauth.AbstractApiService;
 
 import javax.inject.Inject;
 
@@ -27,7 +27,7 @@ import javax.inject.Inject;
  * @author Antoine Sabot-Durand
  */
 
-public abstract class TwitterBaseService extends AbstractSocialMediaApi {
+public abstract class TwitterBaseService extends AbstractApiService {
 
     public static final String API_ROOT = "https://api.twitter.com/1.1/";
 
