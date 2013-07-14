@@ -19,11 +19,14 @@
 package org.agorava.twitter.cdi.test;
 
 import org.agorava.Twitter;
-import org.agorava.TwitterServicesHub;
-import org.agorava.core.api.SocialMediaApiHub;
-import org.agorava.core.cdi.OAuthApplication;
+import org.agorava.core.api.oauth.OAuthAppSettings;
+import org.agorava.core.api.oauth.OAuthSession;
+import org.agorava.core.cdi.Current;
+import org.agorava.core.oauth.PropertyOAuthAppSettingsBuilder;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
 
 /**
@@ -31,12 +34,24 @@ import javax.enterprise.inject.Produces;
  */
 public class TwitterServiceProducer {
 
-    @Twitter
+
     @ApplicationScoped
-    @OAuthApplication
     @Produces
-    public SocialMediaApiHub OAuthSettinsProducer(TwitterServicesHub service) {
-        return service;
+    @Twitter
+    public OAuthAppSettings produceFirstSetting() {
+        PropertyOAuthAppSettingsBuilder builder = new PropertyOAuthAppSettingsBuilder();
+        return builder.build();
     }
+
+
+    @SessionScoped
+    @Produces
+    @Twitter
+    @Current
+    public OAuthSession produceOauthSession(@Twitter @Default OAuthSession session) {
+        return session;
+
+    }
+
 
 }

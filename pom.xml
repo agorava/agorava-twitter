@@ -19,13 +19,12 @@
     <parent>
         <artifactId>agorava-parent</artifactId>
         <groupId>org.agorava</groupId>
-        <version>0.5.2.2</version>
+        <version>0.6.0</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.agorava</groupId>
     <artifactId>agorava-twitter-parent</artifactId>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -52,6 +51,6 @@
         <connection>scm:git:git://github.com/agorava/agorava-twitter.git</connection>
         <developerConnection>scm:git:git@github.com:agorava/agorava-twitter.git</developerConnection>
         <url>http://github.com/agorava/agorava-twitter</url>
-        <tag>0.5.0</tag>
-  </scm>
+        <tag>0.6.0</tag>
+    </scm>
 </project>

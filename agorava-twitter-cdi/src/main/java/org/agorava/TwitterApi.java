@@ -13,35 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/**
+ *
+ */
 package org.agorava;
 
-import org.agorava.core.api.oauth.OAuthService;
-import org.agorava.core.oauth.AbstractApiService;
+import org.agorava.core.api.oauth.DefaultOAuth10Api;
+//import org.jboss.solder.logging.Logger;
 
-import javax.inject.Inject;
 
 /**
- * A specialization of {@link OAuthService} to add TwitterRelated specific methods
- *
  * @author Antoine Sabot-Durand
  */
 
-public abstract class TwitterBaseService extends AbstractApiService {
+@Twitter
+public class TwitterApi extends DefaultOAuth10Api {
 
-    public static final String API_ROOT = "https://api.twitter.com/1.1/";
+    private static final String MEDIA_NAME = "Twitter";
 
-    @Inject
-    @Twitter
-    private OAuthService service;
 
     @Override
-    public String buildUri(String uri) {
-        return API_ROOT + uri;
-    }
-
-    @Override
-    public OAuthService getService() {
-        return service;
+    public String getServiceName() {
+        return MEDIA_NAME;
     }
 }

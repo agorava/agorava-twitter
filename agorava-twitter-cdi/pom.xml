@@ -18,15 +18,11 @@
     <parent>
         <artifactId>agorava-twitter-parent</artifactId>
         <groupId>org.agorava</groupId>
-        <version>0.5.0</version>
+        <version>0.6.0</version>
     </parent>
     <artifactId>agorava-twitter-cdi</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-        </dependency>
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
@@ -44,7 +40,12 @@
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-depchain</artifactId>
+            <type>pom</type>
         </dependency>
 
         <dependency>
@@ -55,6 +56,59 @@
     </dependencies>
 
     <profiles>
+        <profile>
+            <!-- use this profile to compile and test Agorava with Apache OpenWebBeans -->
+            <id>owb</id>
+
+            <properties>
+                <arquillian>OpenWebBeans</arquillian>
+                <owb.enable>true</owb.enable>
+            </properties>
+
+
+            <dependencies>
+                <!-- OWB specific dependencies-->
+                <dependency>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-atinject_1.0_spec</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-jcdi_1.0_spec</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-interceptor_1.1_spec</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.openwebbeans</groupId>
+                    <artifactId>openwebbeans-impl</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.openwebbeans</groupId>
+                    <artifactId>openwebbeans-spi</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.openwebbeans</groupId>
+                    <artifactId>openwebbeans-resource</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-servlet_3.0_spec</artifactId>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.openwebbeans.arquillian</groupId>
+                    <artifactId>owb-arquillian-standalone</artifactId>
+                    <version>1.1.8</version>
+                    <scope>test</scope>
+                </dependency>
+
+
+            </dependencies>
+        </profile>
+
+
         <profile>
             <id>weld</id>
             <activation>
@@ -90,10 +144,6 @@
                     <scope>test</scope>
                 </dependency>
 
-                <dependency>
-                    <groupId>org.agorava</groupId>
-                    <artifactId>solder-generics-impl</artifactId>
-                </dependency>
             </dependencies>
 
         </profile>
@@ -101,7 +151,6 @@
     </profiles>
 
     <build>
-        <finalName>agorava-twitter-cdi</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
