@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,10 @@
 
 package org.agorava.twitter.model;
 
+import org.agorava.twitter.TwitterGeoService;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.agorava.twitter.TwitterGeoService;
 
 /**
  * Represents the results of a similar places search. Includes places that match the search criteria and a

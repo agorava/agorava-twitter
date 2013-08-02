@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,18 +17,7 @@
 package org.agorava.twitter.jackson;
 
 import org.agorava.Twitter;
-import org.agorava.twitter.model.DirectMessage;
-import org.agorava.twitter.model.Place;
-import org.agorava.twitter.model.RateLimitStatus;
-import org.agorava.twitter.model.SavedSearch;
-import org.agorava.twitter.model.SearchResults;
-import org.agorava.twitter.model.SimilarPlacesResponse;
-import org.agorava.twitter.model.SuggestionCategory;
-import org.agorava.twitter.model.Trend;
-import org.agorava.twitter.model.Trends;
-import org.agorava.twitter.model.Tweet;
-import org.agorava.twitter.model.TwitterProfile;
-import org.agorava.twitter.model.UserList;
+import org.agorava.twitter.model.*;
 import org.codehaus.jackson.Version;
 import org.codehaus.jackson.map.module.SimpleModule;
 

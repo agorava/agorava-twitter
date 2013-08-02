@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,14 @@
 
 package org.agorava.twitter.jackson;
 
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Map;
-
 import org.agorava.twitter.model.Trend;
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
+
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Holder of a list of weekly trends.

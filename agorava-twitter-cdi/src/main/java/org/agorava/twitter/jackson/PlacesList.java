@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,6 @@
 
 package org.agorava.twitter.jackson;
 
-import java.io.IOException;
-import java.util.List;
-
 import org.agorava.twitter.model.Place;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParser;
@@ -31,6 +28,9 @@ import org.codehaus.jackson.map.JsonDeserializer;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.type.TypeReference;
+
+import java.io.IOException;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PlacesList {

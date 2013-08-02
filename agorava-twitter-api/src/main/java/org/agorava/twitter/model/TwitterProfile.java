@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 
 package org.agorava.twitter.model;
 
-import java.util.Date;
-
 import org.agorava.core.api.UserProfile;
+
+import java.util.Date;
 
 /**
  * Model class representing a Twitter user's profile information.

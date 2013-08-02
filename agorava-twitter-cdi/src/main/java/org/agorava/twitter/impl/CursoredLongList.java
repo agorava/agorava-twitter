@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,10 @@
 
 package org.agorava.twitter.impl;
 
-import java.util.List;
-
 import org.agorava.twitter.model.CursoredList;
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonIgnoreType;
-import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.annotate.*;
+
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonIgnoreType

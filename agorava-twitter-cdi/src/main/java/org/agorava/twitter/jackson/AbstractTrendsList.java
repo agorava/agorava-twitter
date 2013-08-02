@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,13 @@
 
 package org.agorava.twitter.jackson;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.agorava.twitter.model.Trend;
 import org.agorava.twitter.model.Trends;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.*;
+import java.util.Map.Entry;
 
 
 /**

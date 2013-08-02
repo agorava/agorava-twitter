@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,17 @@
 
 package org.agorava.twitter.cdi;
 
-import javax.decorator.Decorator;
-import javax.decorator.Delegate;
-import javax.enterprise.event.Event;
-import javax.enterprise.inject.Any;
-import javax.inject.Inject;
-
 import org.agorava.Twitter;
 import org.agorava.core.api.event.SocialEvent.Status;
 import org.agorava.core.api.event.StatusUpdated;
 import org.agorava.twitter.TwitterTimelineService;
 import org.agorava.twitter.model.Tweet;
+
+import javax.decorator.Decorator;
+import javax.decorator.Delegate;
+import javax.enterprise.event.Event;
+import javax.enterprise.inject.Any;
+import javax.inject.Inject;
 
 @Decorator
 /**
