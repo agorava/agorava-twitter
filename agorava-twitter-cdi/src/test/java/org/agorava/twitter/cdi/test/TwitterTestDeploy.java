@@ -32,7 +32,7 @@ public class TwitterTestDeploy {
                 .addPackages(true, new Filter<ArchivePath>() {
                     @Override
                     public boolean include(ArchivePath path) {
-                        return !(path.get().contains("test"));
+                        return !((path.get().contains("test") || path.get().contains("web")));
                     }
                 }, "org.agorava")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
