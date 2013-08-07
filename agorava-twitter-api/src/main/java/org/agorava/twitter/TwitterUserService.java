@@ -28,6 +28,7 @@ import java.util.List;
  *
  * @author Craig Walls
  * @author Antoine Sabot-Durand
+ * @author Werner Keil
  */
 public interface TwitterUserService {
 
@@ -35,7 +36,7 @@ public interface TwitterUserService {
      * Retrieves the authenticated user's Twitter ID.
      *
      * @return the user's ID at Twitter
-     * @throws ApiException                  if there is an error while communicating with Twitter.
+     * @throws AgoravaException                  if there is an error while communicating with Twitter.
      * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
      */
     String getProfileId();
@@ -44,7 +45,7 @@ public interface TwitterUserService {
      * Retrieves the authenticated user's Twitter screen name
      *
      * @return the user's screen name
-     * @throws ApiException                  if there is an error while communicating with Twitter.
+     * @throws AgoravaException                  if there is an error while communicating with Twitter.
      * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
      */
     String getScreenName();
@@ -53,7 +54,7 @@ public interface TwitterUserService {
      * Retrieves the authenticated user's Twitter profile details.
      *
      * @return a {@link TwitterProfile} object representing the user's profile.
-     * @throws ApiException                  if there is an error while communicating with Twitter.
+     * @throws AgoravaException                  if there is an error while communicating with Twitter.
      * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
      */
     TwitterProfile getUserProfile();
@@ -63,7 +64,7 @@ public interface TwitterUserService {
      *
      * @param screenName the screen name for the user whose details are to be retrieved.
      * @return a {@link TwitterProfile} object representing the user's profile.
-     * @throws ApiException if there is an error while communicating with Twitter.
+     * @throws AgoravaException if there is an error while communicating with Twitter.
      */
     TwitterProfile getUserProfile(String screenName);
 
@@ -72,7 +73,7 @@ public interface TwitterUserService {
      *
      * @param userId the user ID for the user whose details are to be retrieved.
      * @return a {@link TwitterProfile} object representing the user's profile.
-     * @throws ApiException if there is an error while communicating with Twitter.
+     * @throws AgoravaException if there is an error while communicating with Twitter.
      */
     TwitterProfile getUserProfile(long userId);
 
@@ -81,7 +82,7 @@ public interface TwitterUserService {
      *
      * @param screenName the screen name of the user
      * @return an array of bytes containing the user's profile image.
-     * @throws ApiException if there is an error while communicating with Twitter.
+     * @throws AgoravaException if there is an error while communicating with Twitter.
      */
     byte[] getUserProfileImage(String screenName);
 
@@ -91,21 +92,21 @@ public interface TwitterUserService {
      * @param screenName the screen name of the user
      * @param size       the size of the image
      * @return an array of bytes containing the user's profile image.
-     * @throws ApiException if there is an error while communicating with Twitter.
+     * @throws AgoravaException if there is an error while communicating with Twitter.
      */
     byte[] getUserProfileImage(String screenName, ImageSize size);
 
     /**
      * Retrieves a list of Twitter profiles for the given list of user IDs.
      *
-     * @throws ApiException if there is an error while communicating with Twitter.
+     * @throws AgoravaException if there is an error while communicating with Twitter.
      */
     List<TwitterProfile> getUsers(String... userIds);
 
     /**
      * Searches for up to 20 users that match a given query.
      *
-     * @throws ApiException                  if there is an error while communicating with Twitter.
+     * @throws AgoravaException                  if there is an error while communicating with Twitter.
      * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
      */
     List<TwitterProfile> searchForUsers(String query);
@@ -115,7 +116,7 @@ public interface TwitterUserService {
      *
      * @param page     the page of search results to return
      * @param pageSize the number of {@link TwitterProfile}s per page. Maximum of 20 per page.
-     * @throws ApiException                  if there is an error while communicating with Twitter.
+     * @throws AgoravaException                  if there is an error while communicating with Twitter.
      * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
      */
     List<TwitterProfile> searchForUsers(String query, int page, int pageSize);
@@ -123,7 +124,7 @@ public interface TwitterUserService {
     /**
      * Retrieves a list of categories from which suggested users to follow may be found.
      *
-     * @throws ApiException if there is an error while communicating with Twitter.
+     * @throws AgoravaException if there is an error while communicating with Twitter.
      */
     List<SuggestionCategory> getSuggestionCategories();
 
@@ -131,7 +132,7 @@ public interface TwitterUserService {
      * Retrieves a list of suggestions of users to follow for a given category.
      *
      * @param slug the category's slug
-     * @throws ApiException if there is an error while communicating with Twitter.
+     * @throws AgoravaException if there is an error while communicating with Twitter.
      */
     List<TwitterProfile> getSuggestions(String slug);
 
@@ -145,7 +146,7 @@ public interface TwitterUserService {
     /**
      * Retrieves a list of Twitter profiles for the given list of screen names.
      *
-     * @throws ApiException if there is an error while communicating with Twitter.
+     * @throws AgoravaException if there is an error while communicating with Twitter.
      */
     List<TwitterProfile> getUsersByName(String... screenNames);
 }
