@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@
 package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
-import org.agorava.core.utils.URLUtils;
 import org.agorava.twitter.TwitterBlockService;
 import org.agorava.twitter.impl.TwitterUserServiceImpl.TwitterProfileList;
 import org.agorava.twitter.model.TwitterProfile;
@@ -75,7 +74,7 @@ public class TwitterBlockServiceImpl extends TwitterBaseService implements Twitt
 
     @Override
     public List<TwitterProfile> getBlockedUsers(int page, int pageSize) {
-        Map<String, String> parameters = URLUtils.buildPagingParametersWithPerPage(page, pageSize, 0, 0);
+        Map<String, String> parameters = buildPagingParametersWithPerPage(page, pageSize, 0, 0);
         return getService().get(buildUri("blocks/blocking.json", parameters), TwitterProfileList.class);
     }
 

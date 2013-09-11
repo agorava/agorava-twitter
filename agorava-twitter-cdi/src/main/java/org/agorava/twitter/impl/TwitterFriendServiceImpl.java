@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@
 package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
-import org.agorava.core.utils.URLUtils;
 import org.agorava.twitter.impl.TwitterUserServiceImpl.TwitterProfileList;
 import org.agorava.twitter.model.CursoredList;
 import org.agorava.twitter.model.TwitterProfile;
@@ -35,6 +34,7 @@ import static com.google.common.collect.Maps.newHashMap;
  * @author Craig Walls
  */
 public class TwitterFriendServiceImpl extends TwitterBaseService implements org.agorava.twitter.TwitterFriendService {
+
 
     @Override
     public CursoredList<TwitterProfile> getFriends() {
@@ -270,7 +270,7 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
         List<List<Long>> chunks = chunkList(userIds, 100);
         CursoredList<TwitterProfile> users = new CursoredList<TwitterProfile>(userIds.size(), previousCursor, nextCursor);
         for (List<Long> userIdChunk : chunks) {
-            String joinedIds = URLUtils.commaJoiner.join(userIdChunk);
+            String joinedIds = commaJoiner.join(userIdChunk);
             users.addAll(getService().get(buildUri("users/lookup.json", "user_id", joinedIds),
                     TwitterProfileList.class));
         }

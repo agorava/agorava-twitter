@@ -16,7 +16,7 @@
 
 package org.agorava.twitter.model;
 
-import org.agorava.core.api.UserProfile;
+import org.agorava.core.spi.UserProfile;
 
 import java.util.Date;
 

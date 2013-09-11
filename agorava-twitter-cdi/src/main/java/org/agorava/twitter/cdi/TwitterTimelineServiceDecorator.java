@@ -16,9 +16,9 @@
 
 package org.agorava.twitter.cdi;
 
-import org.agorava.Twitter;
 import org.agorava.core.api.event.SocialEvent.Status;
 import org.agorava.core.api.event.StatusUpdated;
+import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterTimelineService;
 import org.agorava.twitter.model.Tweet;
 
