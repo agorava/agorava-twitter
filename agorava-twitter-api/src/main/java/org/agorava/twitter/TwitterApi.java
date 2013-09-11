@@ -13,28 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package org.agorava;
-
-import org.agorava.core.api.ServiceRelated;
-
-import javax.inject.Qualifier;
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-@Qualifier
-@ServiceRelated
-@Target({TYPE, METHOD, PARAMETER, FIELD})
-@Retention(RUNTIME)
-@Documented
 /**
- * @author antoine
  *
  */
-public @interface Twitter {
+package org.agorava.twitter;
 
+import org.agorava.core.api.oauth.OAuthApi;//import org.jboss.solder.logging.Logger;
+
+
+/**
+ * @author Antoine Sabot-Durand
+ */
+
+@Twitter
+public class TwitterApi implements OAuthApi {
+
+    private static final String MEDIA_NAME = "Twitter";
+
+
+    @Override
+    public String getServiceName() {
+        return MEDIA_NAME;
+    }
 }
