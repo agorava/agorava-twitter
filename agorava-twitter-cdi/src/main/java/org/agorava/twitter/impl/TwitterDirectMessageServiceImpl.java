@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@
 package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
-import org.agorava.core.utils.URLUtils;
 import org.agorava.twitter.TwitterDirectMessageService;
 import org.agorava.twitter.model.DirectMessage;
 
@@ -51,7 +50,7 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
     @Override
     public List<DirectMessage> getDirectMessagesReceived(int page, int pageSize, long sinceId, long maxId) {
 
-        Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
+        Map<String, String> parameters = buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
         return getService().get(buildUri("direct_messages.json", parameters), DirectMessageList.class);
     }
 
@@ -68,7 +67,7 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
     @Override
     public List<DirectMessage> getDirectMessagesSent(int page, int pageSize, long sinceId, long maxId) {
 
-        Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
+        Map<String, String> parameters = buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
         return getService().get(buildUri("direct_messages/sent.json", parameters), DirectMessageList.class);
     }
 

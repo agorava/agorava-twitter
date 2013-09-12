@@ -16,8 +16,19 @@
 
 package org.agorava.twitter.jackson;
 
-import org.agorava.Twitter;
-import org.agorava.twitter.model.*;
+import org.agorava.twitter.Twitter;
+import org.agorava.twitter.model.DirectMessage;
+import org.agorava.twitter.model.Place;
+import org.agorava.twitter.model.RateLimitStatus;
+import org.agorava.twitter.model.SavedSearch;
+import org.agorava.twitter.model.SearchResults;
+import org.agorava.twitter.model.SimilarPlacesResponse;
+import org.agorava.twitter.model.SuggestionCategory;
+import org.agorava.twitter.model.Trend;
+import org.agorava.twitter.model.Trends;
+import org.agorava.twitter.model.Tweet;
+import org.agorava.twitter.model.TwitterProfile;
+import org.agorava.twitter.model.UserList;
 import org.codehaus.jackson.Version;
 import org.codehaus.jackson.map.module.SimpleModule;
 

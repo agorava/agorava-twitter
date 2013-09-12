@@ -18,15 +18,15 @@
  */
 package org.agorava.twitter.cdi.test;
 
-import org.agorava.Twitter;
+import org.agorava.core.api.Current;
+import org.agorava.core.api.GenericRoot;
 import org.agorava.core.api.oauth.OAuthAppSettings;
 import org.agorava.core.api.oauth.OAuthSession;
-import org.agorava.core.cdi.Current;
 import org.agorava.core.oauth.PropertyOAuthAppSettingsBuilder;
+import org.agorava.twitter.Twitter;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
-import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
 
 /**
@@ -48,7 +48,7 @@ public class TwitterServiceProducer {
     @Produces
     @Twitter
     @Current
-    public OAuthSession produceOauthSession(@Twitter @Default OAuthSession session) {
+    public OAuthSession produceOauthSession(@Twitter @GenericRoot OAuthSession session) {
         return session;
 
     }

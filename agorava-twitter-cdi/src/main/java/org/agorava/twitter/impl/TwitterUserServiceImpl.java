@@ -18,11 +18,10 @@
  */
 package org.agorava.twitter.impl;
 
-import org.agorava.Twitter;
 import org.agorava.TwitterBaseService;
 import org.agorava.core.api.event.OAuthComplete;
 import org.agorava.core.api.event.SocialEvent;
-import org.agorava.core.utils.URLUtils;
+import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterUserService;
 import org.agorava.twitter.model.ImageSize;
 import org.agorava.twitter.model.RateLimitStatus;
@@ -119,13 +118,13 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
 
     @Override
     public List<TwitterProfile> getUsers(String... userIds) {
-        String joinedIds = URLUtils.commaJoiner.join(userIds);
+        String joinedIds = commaJoiner.join(userIds);
         return getService().get(buildUri(LOOKUP, "user_id", joinedIds), TwitterProfileList.class);
     }
 
     @Override
     public List<TwitterProfile> getUsersByName(String... screenNames) {
-        String joinedScreenNames = URLUtils.commaJoiner.join(screenNames);
+        String joinedScreenNames = commaJoiner.join(screenNames);
         return getService().get(buildUri(LOOKUP, "screen_name", joinedScreenNames), TwitterProfileList.class);
     }
 
@@ -136,7 +135,7 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
 
     @Override
     public List<TwitterProfile> searchForUsers(String query, int page, int pageSize) {
-        Map<String, String> parameters = URLUtils.buildPagingParametersWithPerPage(page, pageSize, 0, 0);
+        Map<String, String> parameters = buildPagingParametersWithPerPage(page, pageSize, 0, 0);
         parameters.put("q", query);
         return getService().get(buildUri(SEARCH_USER_URL, parameters), TwitterProfileList.class);
     }
