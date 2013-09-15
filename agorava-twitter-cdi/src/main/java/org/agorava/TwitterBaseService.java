@@ -18,7 +18,7 @@ package org.agorava;
 
 import com.google.common.base.Joiner;
 import org.agorava.core.api.oauth.OAuthService;
-import org.agorava.core.spi.AbstractApiService;
+import org.agorava.core.spi.TierService;
 import org.agorava.twitter.Twitter;
 
 import javax.inject.Inject;
@@ -31,7 +31,7 @@ import java.util.Map;
  * @author Antoine Sabot-Durand
  */
 
-public abstract class TwitterBaseService extends AbstractApiService {
+public abstract class TwitterBaseService extends TierService {
 
     protected static final char MULTI_VALUE_SEPARATOR = ',';
 
@@ -70,7 +70,7 @@ public abstract class TwitterBaseService extends AbstractApiService {
     private OAuthService service;
 
     @Override
-    public String buildUri(String uri) {
+    public String buildAbsoluteUri(String uri) {
         return API_ROOT + uri;
     }
 

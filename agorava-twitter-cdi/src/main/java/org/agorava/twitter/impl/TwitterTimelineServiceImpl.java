@@ -40,12 +40,14 @@ import static com.google.common.collect.Maps.newHashMap;
 public class TwitterTimelineServiceImpl extends TwitterBaseService implements TwitterTimelineService {
 
     private static final String USER_TIMELINE_URL = "statuses/user_timeline.json";
+
     private static final String HOME_TIMELINE_URL = "statuses/home_timeline.json";
+
     private static final String PUBLIC_TIMELINE_URL = "statuses/public_timeline.json";
 
     @Override
     public List<Tweet> getPublicTimeline() {
-        return getService().get(buildUri(PUBLIC_TIMELINE_URL), TweetList.class);
+        return getService().get(buildAbsoluteUri(PUBLIC_TIMELINE_URL), TweetList.class);
     }
 
     @Override
@@ -248,7 +250,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
 
     @Override
     public Tweet getStatus(long tweetId) {
-        return getService().get(buildUri("statuses/show/" + tweetId + ".json"), Tweet.class);
+        return getService().get(buildAbsoluteUri("statuses/show/" + tweetId + ".json"), Tweet.class);
     }
 
     @Override
@@ -264,7 +266,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
         Map<String, Object> tweetParams = newHashMap();
         tweetParams.put("status", message);
         tweetParams.putAll(details.toParameterMap());
-        return getService().post(buildUri("statuses/update.json"), tweetParams, Tweet.class);
+        return getService().post(buildAbsoluteUri("statuses/update.json"), tweetParams, Tweet.class);
     }
 
     // public Tweet updateStatus(String message, Resource media, StatusDetails details) {
@@ -280,13 +282,13 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
 
     @Override
     public void deleteStatus(long tweetId) {
-        getService().delete(buildUri("statuses/destroy/" + tweetId + ".json"));
+        getService().delete(buildAbsoluteUri("statuses/destroy/" + tweetId + ".json"));
     }
 
     @Override
     public void retweet(long tweetId) {
         Map<String, Object> data = newHashMap();
-        getService().post(buildUri("statuses/retweet/" + tweetId + ".json"), data, String.class);
+        getService().post(buildAbsoluteUri("statuses/retweet/" + tweetId + ".json"), data, String.class);
     }
 
     @Override
@@ -342,13 +344,13 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     @Override
     public void addToFavorites(long tweetId) {
         Map<String, Object> data = newHashMap();
-        getService().post(buildUri("favorites/create/" + tweetId + ".json"), data, String.class);
+        getService().post(buildAbsoluteUri("favorites/create/" + tweetId + ".json"), data, String.class);
     }
 
     @Override
     public void removeFromFavorites(long tweetId) {
         Map<String, Object> data = newHashMap();
-        getService().post(buildUri("favorites/destroy/" + tweetId + ".json"), data, String.class);
+        getService().post(buildAbsoluteUri("favorites/destroy/" + tweetId + ".json"), data, String.class);
     }
 
     @SuppressWarnings("serial")

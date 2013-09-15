@@ -74,7 +74,7 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
     @Override
     public DirectMessage getDirectMessage(long id) {
 
-        return getService().get(buildUri("direct_messages/show/" + id + ".json"), DirectMessage.class);
+        return getService().get(buildAbsoluteUri("direct_messages/show/" + id + ".json"), DirectMessage.class);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
         Map<String, Object> data = newHashMap();
         data.put("screen_name", String.valueOf(toScreenName));
         data.put("text", text);
-        return getService().post(buildUri("direct_messages/new.json"), data, DirectMessage.class);
+        return getService().post(buildAbsoluteUri("direct_messages/new.json"), data, DirectMessage.class);
     }
 
     @Override
@@ -92,13 +92,13 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
         Map<String, Object> data = newHashMap();
         data.put("user_id", String.valueOf(toUserId));
         data.put("text", text);
-        return getService().post(buildUri("direct_messages/new.json"), data, DirectMessage.class);
+        return getService().post(buildAbsoluteUri("direct_messages/new.json"), data, DirectMessage.class);
     }
 
     @Override
     public void deleteDirectMessage(long messageId) {
 
-        getService().delete(buildUri("direct_messages/destroy/" + messageId + ".json"));
+        getService().delete(buildAbsoluteUri("direct_messages/destroy/" + messageId + ".json"));
     }
 
 }

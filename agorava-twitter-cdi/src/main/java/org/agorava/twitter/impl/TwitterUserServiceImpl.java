@@ -73,9 +73,13 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
     static final String VERIFY_CREDENTIALS_URL = "account/verify_credentials.json";
 
     static final String GET_USER_PROFILE_URL = "users/show.json";
+
     static final String SEARCH_USER_URL = "users/search.json";
+
     static final String SUGGESTION_CATEGORIES = "users/suggestions.json";
+
     static final String LOOKUP = "users/lookup.json";
+
     static final String RATE_LIMIT_STATUS = "account/rate_limit_status.json";
 
 
@@ -142,23 +146,23 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
 
     @Override
     public List<SuggestionCategory> getSuggestionCategories() {
-        return getService().get(buildUri(SUGGESTION_CATEGORIES), SuggestionCategoryList.class);
+        return getService().get(buildAbsoluteUri(SUGGESTION_CATEGORIES), SuggestionCategoryList.class);
     }
 
     @Override
     public List<TwitterProfile> getSuggestions(String slug) {
-        return getService().get(buildUri("users/suggestions/" + slug + ".json"), TwitterProfileUsersList.class)
+        return getService().get(buildAbsoluteUri("users/suggestions/" + slug + ".json"), TwitterProfileUsersList.class)
                 .getList();
     }
 
     @Override
     public RateLimitStatus getRateLimitStatus() {
-        return getService().get(buildUri(RATE_LIMIT_STATUS), RateLimitStatus.class);
+        return getService().get(buildAbsoluteUri(RATE_LIMIT_STATUS), RateLimitStatus.class);
     }
 
     @Override
     public TwitterProfile getUserProfile() {
-        return getService().get(buildUri(VERIFY_CREDENTIALS_URL), TwitterProfile.class);
+        return getService().get(buildAbsoluteUri(VERIFY_CREDENTIALS_URL), TwitterProfile.class);
     }
 
 }

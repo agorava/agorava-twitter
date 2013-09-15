@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,11 @@ package org.agorava.twitter.impl;
 import org.agorava.TwitterBaseService;
 import org.agorava.twitter.TwitterGeoService;
 import org.agorava.twitter.jackson.PlacesList;
-import org.agorava.twitter.model.*;
+import org.agorava.twitter.model.Place;
+import org.agorava.twitter.model.PlacePrototype;
+import org.agorava.twitter.model.PlaceType;
+import org.agorava.twitter.model.SimilarPlaces;
+import org.agorava.twitter.model.SimilarPlacesResponse;
 
 import java.util.List;
 import java.util.Map;
@@ -36,7 +40,7 @@ public class TwitterGeoServiceImpl extends TwitterBaseService implements Twitter
 
     @Override
     public Place getPlace(String placeId) {
-        return getService().get(buildUri("geo/id/" + placeId + ".json"), Place.class);
+        return getService().get(buildAbsoluteUri("geo/id/" + placeId + ".json"), Place.class);
     }
 
     @Override

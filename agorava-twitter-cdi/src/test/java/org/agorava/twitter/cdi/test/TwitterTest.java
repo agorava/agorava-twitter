@@ -16,7 +16,7 @@
 
 package org.agorava.twitter.cdi.test;
 
-import org.agorava.core.api.Current;
+import org.agorava.core.api.atinject.Current;
 import org.agorava.core.api.oauth.OAuthService;
 import org.agorava.core.api.oauth.OAuthSession;
 import org.agorava.core.api.oauth.Token;
@@ -41,11 +41,14 @@ public class TwitterTest extends TwitterTestDeploy {
 
     @Inject
     TwitterTimelineService tl;
+
     @Inject
     TwitterUserService userService;
+
     @Inject
     @Twitter
     OAuthService service;
+
     @Inject
     @Twitter
     @Current

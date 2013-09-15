@@ -43,28 +43,28 @@ public class TwitterBlockServiceImpl extends TwitterBaseService implements Twitt
     public TwitterProfile block(long userId) {
         Map<String, String> request = newHashMap();
         request.put("user_id", String.valueOf(userId));
-        return getService().post(buildUri("blocks/create.json"), request, TwitterProfile.class);
+        return getService().post(buildAbsoluteUri("blocks/create.json"), request, TwitterProfile.class);
     }
 
     @Override
     public TwitterProfile block(String screenName) {
         Map<String, String> request = newHashMap();
         request.put("screen_name", screenName);
-        return getService().post(buildUri("blocks/create.json"), request, TwitterProfile.class);
+        return getService().post(buildAbsoluteUri("blocks/create.json"), request, TwitterProfile.class);
     }
 
     @Override
     public TwitterProfile unblock(long userId) {
         Map<String, String> request = newHashMap();
         request.put("user_id", String.valueOf(userId));
-        return getService().post(buildUri("blocks/destroy.json"), request, TwitterProfile.class);
+        return getService().post(buildAbsoluteUri("blocks/destroy.json"), request, TwitterProfile.class);
     }
 
     @Override
     public TwitterProfile unblock(String screenName) {
         Map<String, String> request = newHashMap();
         request.put("screen_name", screenName);
-        return getService().post(buildUri("blocks/destroy.json"), request, TwitterProfile.class);
+        return getService().post(buildAbsoluteUri("blocks/destroy.json"), request, TwitterProfile.class);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class TwitterBlockServiceImpl extends TwitterBaseService implements Twitt
 
     @Override
     public List<Long> getBlockedUserIds() {
-        return getService().get(buildUri("blocks/blocking/ids.json"), LongList.class);
+        return getService().get(buildAbsoluteUri("blocks/blocking/ids.json"), LongList.class);
     }
 
     @Override

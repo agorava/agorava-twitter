@@ -30,8 +30,11 @@ import org.agorava.core.spi.TierConfigOauth10a;
 public class TwitterApi extends TierConfigOauth10a {
 
     private static final String MEDIA_NAME = "Twitter";
+
     private static final String AUTHORIZE_URL = "https://api.twitter.com/oauth/authorize?oauth_token=%s";
+
     private static final String REQUEST_TOKEN_RESOURCE = "api.twitter.com/oauth/request_token";
+
     private static final String ACCESS_TOKEN_RESOURCE = "api.twitter.com/oauth/access_token";
 
     @Override
@@ -90,7 +93,7 @@ public class TwitterApi extends TierConfigOauth10a {
      *//*
       public static class Authorize extends SSL{}*/
     @Override
-    public String getServiceName() {
+    public String getTierName() {
         return MEDIA_NAME;
     }
 }
