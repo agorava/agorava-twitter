@@ -21,8 +21,8 @@ package org.agorava.twitter.cdi.test;
 import org.agorava.core.api.atinject.Current;
 import org.agorava.core.api.atinject.GenericBean;
 import org.agorava.core.api.oauth.OAuthAppSettings;
+import org.agorava.core.api.oauth.OAuthApplication;
 import org.agorava.core.api.oauth.OAuthSession;
-import org.agorava.core.oauth.PropertyOAuthAppSettingsBuilder;
 import org.agorava.twitter.Twitter;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -38,10 +38,8 @@ public class TwitterServiceProducer {
     @ApplicationScoped
     @Produces
     @Twitter
-    public OAuthAppSettings produceFirstSetting() {
-        PropertyOAuthAppSettingsBuilder builder = new PropertyOAuthAppSettingsBuilder();
-        return builder.build();
-    }
+    @OAuthApplication
+    public OAuthAppSettings produceSettings;
 
 
     @SessionScoped
