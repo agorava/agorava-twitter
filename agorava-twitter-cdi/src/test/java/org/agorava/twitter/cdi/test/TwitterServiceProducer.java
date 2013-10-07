@@ -23,6 +23,7 @@ import org.agorava.core.api.atinject.GenericBean;
 import org.agorava.core.api.oauth.OAuthAppSettings;
 import org.agorava.core.api.oauth.OAuthApplication;
 import org.agorava.core.api.oauth.OAuthSession;
+import org.agorava.core.cdi.UserSessionRepositoryImpl;
 import org.agorava.twitter.Twitter;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -47,6 +48,7 @@ public class TwitterServiceProducer {
     @Twitter
     @Current
     public OAuthSession produceOauthSession(@Twitter @GenericBean OAuthSession session) {
+        session.setRepo(new UserSessionRepositoryImpl());
         return session;
 
     }
