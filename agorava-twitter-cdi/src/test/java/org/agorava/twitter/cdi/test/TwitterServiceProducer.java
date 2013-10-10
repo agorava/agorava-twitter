@@ -18,12 +18,12 @@
  */
 package org.agorava.twitter.cdi.test;
 
-import org.agorava.core.api.atinject.Current;
-import org.agorava.core.api.atinject.GenericBean;
-import org.agorava.core.api.oauth.OAuthSession;
-import org.agorava.core.api.oauth.application.OAuthAppSettings;
-import org.agorava.core.api.oauth.application.OAuthApplication;
-import org.agorava.core.cdi.UserSessionRepositoryImpl;
+import org.agorava.api.atinject.Current;
+import org.agorava.api.atinject.GenericBean;
+import org.agorava.api.oauth.OAuthSession;
+import org.agorava.api.oauth.application.OAuthAppSettings;
+import org.agorava.api.oauth.application.OAuthApplication;
+import org.agorava.cdi.UserSessionRepositoryImpl;
 import org.agorava.twitter.Twitter;
 
 import javax.enterprise.context.ApplicationScoped;

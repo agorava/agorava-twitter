@@ -19,8 +19,8 @@
 package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
-import org.agorava.core.api.event.OAuthComplete;
-import org.agorava.core.api.event.SocialEvent;
+import org.agorava.api.event.OAuthComplete;
+import org.agorava.api.event.SocialEvent;
 import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterUserService;
 import org.agorava.twitter.model.ImageSize;

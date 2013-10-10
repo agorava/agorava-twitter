@@ -16,7 +16,7 @@
 
 package org.agorava.twitter;
 
-import org.agorava.core.api.atinject.ProviderRelated;
+import org.agorava.api.atinject.ProviderRelated;
 
 import javax.inject.Qualifier;
 import java.lang.annotation.Documented;

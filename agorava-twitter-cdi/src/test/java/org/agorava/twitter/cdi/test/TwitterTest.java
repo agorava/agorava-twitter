@@ -16,10 +16,10 @@
 
 package org.agorava.twitter.cdi.test;
 
-import org.agorava.core.api.atinject.Current;
-import org.agorava.core.api.oauth.OAuthService;
-import org.agorava.core.api.oauth.OAuthSession;
-import org.agorava.core.api.oauth.Token;
+import org.agorava.api.atinject.Current;
+import org.agorava.api.oauth.OAuthService;
+import org.agorava.api.oauth.OAuthSession;
+import org.agorava.api.oauth.Token;
 import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterTimelineService;
 import org.agorava.twitter.TwitterUserService;

@@ -18,8 +18,8 @@
  */
 package org.agorava.twitter;
 
-import org.agorava.core.api.oauth.Token;
-import org.agorava.core.spi.ProviderConfigOauth10a;
+import org.agorava.api.oauth.Token;
+import org.agorava.spi.ProviderConfigOauth10a;
 
 
 /**

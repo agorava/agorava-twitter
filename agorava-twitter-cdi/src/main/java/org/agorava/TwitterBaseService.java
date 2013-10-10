@@ -17,8 +17,8 @@
 package org.agorava;
 
 import com.google.common.base.Joiner;
-import org.agorava.core.api.oauth.OAuthService;
-import org.agorava.core.spi.ProvideApiService;
+import org.agorava.api.oauth.OAuthService;
+import org.agorava.spi.ProvideApiService;
 import org.agorava.twitter.Twitter;
 
 import javax.inject.Inject;
