@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,16 +26,27 @@ import java.util.Date;
  */
 public class Tweet {
     private long id;
+
     private String text;
+
     private Date createdAt;
+
     private String fromUser;
+
     private String profileImageUrl;
+
     private Long toUserId;
+
     private Long inReplyToStatusId;
+
     private long fromUserId;
+
     private boolean favorited;
+
     private String languageCode;
+
     private String source;
+
     private Integer retweetCount;
 
     public Tweet(long id, String text, Date createdAt, String fromUser, String profileImageUrl, Long toUserId, long fromUserId,

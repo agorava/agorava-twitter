@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import java.util.List;
 public class SimilarPlacesResponse {
 
     private final String token;
+
     private final List<Place> places;
 
     public SimilarPlacesResponse(List<Place> places, String token) {

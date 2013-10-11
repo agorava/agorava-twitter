@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 /**
- * Holds a Trends object deserialized from Twitter's local trends JSON structure. Provides a convenient place to hang the @JsonDeserialize
+ * Holds a Trends object deserialized from Twitter's local trends JSON structure. Provides a convenient place to hang the
+ * @JsonDeserialize
  * annotation.
  *
  * @author Craig Walls
