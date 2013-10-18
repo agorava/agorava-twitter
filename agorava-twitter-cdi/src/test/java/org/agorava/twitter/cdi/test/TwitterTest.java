@@ -20,6 +20,7 @@ import org.agorava.api.atinject.Current;
 import org.agorava.api.oauth.OAuthService;
 import org.agorava.api.oauth.OAuthSession;
 import org.agorava.api.oauth.Token;
+import org.agorava.api.service.SessionService;
 import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterTimelineService;
 import org.agorava.twitter.TwitterUserService;
@@ -43,11 +44,15 @@ public class TwitterTest extends TwitterTestDeploy {
     TwitterTimelineService tl;
 
     @Inject
+            @Twitter
     TwitterUserService userService;
 
     @Inject
     @Twitter
     OAuthService service;
+
+    @Inject
+    SessionService sessionService;
 
     @Inject
     @Twitter
@@ -59,7 +64,7 @@ public class TwitterTest extends TwitterTestDeploy {
         Token token = new Token("334872715-u75bjYqWyQSYjFMnKeTDZUn8i0QAExjUQ4ENZXH3",
                 "08QG7HVqDjkr1oH1YfBRWmd0n8EG73CuzJgTjFI0sk");
         service.getSession().setAccessToken(token);
-        service.initAccessToken();
+        sessionService.completeSession();
     }
 
     @Test

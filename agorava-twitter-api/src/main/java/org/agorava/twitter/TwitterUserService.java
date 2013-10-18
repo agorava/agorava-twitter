@@ -16,6 +16,7 @@
 
 package org.agorava.twitter;
 
+import org.agorava.spi.UserProfileService;
 import org.agorava.twitter.model.ImageSize;
 import org.agorava.twitter.model.RateLimitStatus;
 import org.agorava.twitter.model.SuggestionCategory;
@@ -30,7 +31,7 @@ import java.util.List;
  * @author Antoine Sabot-Durand
  * @author Werner Keil
  */
-public interface TwitterUserService {
+public interface TwitterUserService extends UserProfileService{
 
     /**
      * Retrieves the authenticated user's Twitter ID.

@@ -19,8 +19,6 @@
 package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
-import org.agorava.api.event.OAuthComplete;
-import org.agorava.api.event.SocialEvent;
 import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterUserService;
 import org.agorava.twitter.model.ImageSize;
@@ -31,7 +29,6 @@ import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-import javax.enterprise.event.Observes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +36,7 @@ import java.util.Map;
 /**
  * @author Antoine Sabot-Durand
  */
+@Twitter
 public class TwitterUserServiceImpl extends TwitterBaseService implements TwitterUserService {
 
     /**
@@ -81,13 +79,6 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
     static final String LOOKUP = "users/lookup.json";
 
     static final String RATE_LIMIT_STATUS = "account/rate_limit_status.json";
-
-
-    public void initMyProfile(@Observes @Twitter OAuthComplete oauthComplete) {
-        //     log.debug("**** Initializing Twitter profile ****");
-        if (oauthComplete.getStatus() == SocialEvent.Status.SUCCESS)
-            oauthComplete.getEventData().setUserProfile(getUserProfile());
-    }
 
     @Override
     public String getProfileId() {
