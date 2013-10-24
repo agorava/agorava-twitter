@@ -19,17 +19,11 @@
  */
 package org.agorava.twitter.cdi.test;
 
-import org.agorava.TwitterLiteral;
-import org.agorava.api.atinject.Current;
-import org.agorava.api.oauth.OAuthSession;
-import org.agorava.api.oauth.OAuthSessionBuilder;
 import org.agorava.api.oauth.application.OAuthAppSettings;
 import org.agorava.api.oauth.application.OAuthApplication;
-import org.agorava.oauth.UserSessionRepositoryImpl;
 import org.agorava.twitter.Twitter;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 
 /**
@@ -44,16 +38,16 @@ public class TwitterServiceProducer {
     @OAuthApplication
     public OAuthAppSettings produceSettings;
 
-    @SessionScoped
+/*    @SessionScoped
     @Produces
     @Twitter
-    @Current
+    //@Current
     public OAuthSession produceOauthSession() {
         OAuthSession res = new OAuthSessionBuilder().qualifier(TwitterLiteral.INSTANCE).build();
         res.setRepo(new UserSessionRepositoryImpl());
         return res;
 
-    }
+    }*/
 
 
 }

@@ -17,7 +17,10 @@
 package org.agorava.twitter.cdi.test;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.shrinkwrap.api.*;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ArchivePath;
+import org.jboss.shrinkwrap.api.Filter;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -35,12 +38,14 @@ public class TwitterTestDeploy {
                         return !((path.get().contains("test") || path.get().contains("web")));
                     }
                 }, "org.agorava")
+                .addAsResource("META-INF/services/javax.enterprise.inject.spi.Extension")
+                .addAsResource("META-INF/services/org.apache.deltaspike.core.spi.config.ConfigSourceProvider")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 
-        GenericArchive[] libs = Maven.resolver()
+        JavaArchive[] libs = Maven.resolver()
                 .loadPomFromFile("pom.xml")
                 .resolve("org.apache.deltaspike.core:deltaspike-core-impl")
-                .withTransitivity().as(GenericArchive.class);
+                .withTransitivity().as(JavaArchive.class);
 
 
         WebArchive ret = ShrinkWrap
@@ -48,7 +53,8 @@ public class TwitterTestDeploy {
                 .addClasses(TwitterServiceProducer.class)
                 .addAsLibraries(libs)
                 .addAsLibraries(testJar)
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsWebInfResource("agorava.properties");
 
         System.out.println(System.getProperty("arquillian"));
         return ret;

@@ -44,7 +44,7 @@ public class TwitterTest extends TwitterTestDeploy {
     TwitterTimelineService tl;
 
     @Inject
-            @Twitter
+    @Twitter
     TwitterUserService userService;
 
     @Inject
@@ -63,7 +63,8 @@ public class TwitterTest extends TwitterTestDeploy {
     public void init() {
         Token token = new Token("334872715-u75bjYqWyQSYjFMnKeTDZUn8i0QAExjUQ4ENZXH3",
                 "08QG7HVqDjkr1oH1YfBRWmd0n8EG73CuzJgTjFI0sk");
-        service.getSession().setAccessToken(token);
+        //service.getSession().setAccessToken(token);
+        sessionTest.setAccessToken(token);
         sessionService.completeSession();
     }
 
