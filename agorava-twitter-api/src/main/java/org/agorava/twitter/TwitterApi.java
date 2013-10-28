@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  *
  */
@@ -78,7 +79,7 @@ public class TwitterApi extends ProviderConfigOauth10a {
         private static final String AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token=%s";
 
         @Override
-        public String getAuthorizationUrl(Token requestToken)
+        public String startDance(Token requestToken)
         {
           return String.format(AUTHENTICATE_URL, requestToken.getToken());
         }
