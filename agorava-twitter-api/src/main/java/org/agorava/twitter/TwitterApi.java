@@ -79,7 +79,7 @@ public class TwitterApi extends ProviderConfigOauth10a {
         private static final String AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token=%s";
 
         @Override
-        public String startDance(Token requestToken)
+        public String startDanceFor(Token requestToken)
         {
           return String.format(AUTHENTICATE_URL, requestToken.getToken());
         }

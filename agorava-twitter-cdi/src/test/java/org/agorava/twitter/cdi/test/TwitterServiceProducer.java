@@ -43,7 +43,7 @@ public class TwitterServiceProducer {
     @Twitter
     //@Current
     public OAuthSession produceOauthSession() {
-        OAuthSession res = new OAuthSessionBuilder().qualifier(TwitterLiteral.INSTANCE).build();
+        OAuthSession res = new Builder().qualifier(TwitterLiteral.INSTANCE).build();
         res.setRepo(new UserSessionRepositoryImpl());
         return res;
 
