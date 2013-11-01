@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  *
  */
@@ -32,6 +33,8 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.agorava.utils.StringUtils.join;
 
 /**
  * @author Antoine Sabot-Durand
@@ -113,13 +116,13 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
 
     @Override
     public List<TwitterProfile> getUsers(String... userIds) {
-        String joinedIds = commaJoiner.join(userIds);
+        String joinedIds = join(userIds, ',');
         return getService().get(buildUri(LOOKUP, "user_id", joinedIds), TwitterProfileList.class);
     }
 
     @Override
     public List<TwitterProfile> getUsersByName(String... screenNames) {
-        String joinedScreenNames = commaJoiner.join(screenNames);
+        String joinedScreenNames = join(screenNames, ',');
         return getService().get(buildUri(LOOKUP, "screen_name", joinedScreenNames), TwitterProfileList.class);
     }
 

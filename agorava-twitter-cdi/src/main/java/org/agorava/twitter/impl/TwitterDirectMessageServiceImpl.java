@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  *
  */
@@ -23,10 +24,9 @@ import org.agorava.twitter.TwitterDirectMessageService;
 import org.agorava.twitter.model.DirectMessage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.google.common.collect.Maps.newHashMap;
 
 /**
  * @author Antoine Sabot-Durand
@@ -80,7 +80,8 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
     @Override
     public DirectMessage sendDirectMessage(String toScreenName, String text) {
 
-        Map<String, Object> data = newHashMap();
+        Map<String, Object> data = new HashMap();
+        ;
         data.put("screen_name", String.valueOf(toScreenName));
         data.put("text", text);
         return getService().post(buildAbsoluteUri("direct_messages/new.json"), data, DirectMessage.class);
@@ -89,7 +90,8 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
     @Override
     public DirectMessage sendDirectMessage(long toUserId, String text) {
 
-        Map<String, Object> data = newHashMap();
+        Map<String, Object> data = new HashMap();
+        ;
         data.put("user_id", String.valueOf(toUserId));
         data.put("text", text);
         return getService().post(buildAbsoluteUri("direct_messages/new.json"), data, DirectMessage.class);

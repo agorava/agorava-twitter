@@ -16,7 +16,6 @@
 
 package org.agorava;
 
-import com.google.common.base.Joiner;
 import org.agorava.api.oauth.OAuthService;
 import org.agorava.spi.ProviderApiService;
 import org.agorava.twitter.Twitter;
@@ -34,8 +33,6 @@ import java.util.Map;
 public abstract class TwitterBaseService extends ProviderApiService {
 
     protected static final char MULTI_VALUE_SEPARATOR = ',';
-
-    protected static Joiner commaJoiner = Joiner.on(MULTI_VALUE_SEPARATOR).skipNulls();
 
     public static final String API_ROOT = "https://api.twitter.com/1.1/";
 

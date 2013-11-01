@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  *
  */
@@ -24,10 +25,10 @@ import org.agorava.twitter.impl.TwitterUserServiceImpl.TwitterProfileList;
 import org.agorava.twitter.model.TwitterProfile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.google.common.collect.Maps.newHashMap;
 
 /**
  * @author Antoine Sabot-Durand
@@ -41,28 +42,32 @@ public class TwitterBlockServiceImpl extends TwitterBaseService implements Twitt
 
     @Override
     public TwitterProfile block(long userId) {
-        Map<String, String> request = newHashMap();
+        Map<String, String> request = new HashMap();
+        ;
         request.put("user_id", String.valueOf(userId));
         return getService().post(buildAbsoluteUri("blocks/create.json"), request, TwitterProfile.class);
     }
 
     @Override
     public TwitterProfile block(String screenName) {
-        Map<String, String> request = newHashMap();
+        Map<String, String> request = new HashMap();
+        ;
         request.put("screen_name", screenName);
         return getService().post(buildAbsoluteUri("blocks/create.json"), request, TwitterProfile.class);
     }
 
     @Override
     public TwitterProfile unblock(long userId) {
-        Map<String, String> request = newHashMap();
+        Map<String, String> request = new HashMap();
+        ;
         request.put("user_id", String.valueOf(userId));
         return getService().post(buildAbsoluteUri("blocks/destroy.json"), request, TwitterProfile.class);
     }
 
     @Override
     public TwitterProfile unblock(String screenName) {
-        Map<String, String> request = newHashMap();
+        Map<String, String> request = new HashMap();
+        ;
         request.put("screen_name", screenName);
         return getService().post(buildAbsoluteUri("blocks/destroy.json"), request, TwitterProfile.class);
     }

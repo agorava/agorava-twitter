@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  *
  */
@@ -27,10 +28,9 @@ import org.agorava.twitter.model.TwitterProfile;
 
 import javax.inject.Named;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.google.common.collect.Maps.newHashMap;
 
 /**
  * @author Antoine Sabot-Durand
@@ -263,7 +263,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     // }
 
     public Tweet updateStatus(String message, StatusDetails details) {
-        Map<String, Object> tweetParams = newHashMap();
+        Map<String, Object> tweetParams = new HashMap();
         tweetParams.put("status", message);
         tweetParams.putAll(details.toParameterMap());
         return getService().post(buildAbsoluteUri("statuses/update.json"), tweetParams, Tweet.class);
@@ -287,7 +287,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
 
     @Override
     public void retweet(long tweetId) {
-        Map<String, Object> data = newHashMap();
+        Map<String, Object> data = new HashMap();
         getService().post(buildAbsoluteUri("statuses/retweet/" + tweetId + ".json"), data, String.class);
     }
 
@@ -298,7 +298,7 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
 
     @Override
     public List<Tweet> getRetweets(long tweetId, int count) {
-        Map<String, String> parameters = newHashMap();
+        Map<String, String> parameters = new HashMap();
         parameters.put("count", String.valueOf(count));
         return getService().get(buildUri("statuses/retweets/" + tweetId + ".json", parameters), TweetList.class);
     }
@@ -343,13 +343,13 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
 
     @Override
     public void addToFavorites(long tweetId) {
-        Map<String, Object> data = newHashMap();
+        Map<String, Object> data = new HashMap();
         getService().post(buildAbsoluteUri("favorites/create/" + tweetId + ".json"), data, String.class);
     }
 
     @Override
     public void removeFromFavorites(long tweetId) {
-        Map<String, Object> data = newHashMap();
+        Map<String, Object> data = new HashMap();
         getService().post(buildAbsoluteUri("favorites/destroy/" + tweetId + ".json"), data, String.class);
     }
 

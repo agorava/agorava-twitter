@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  *
  */
@@ -22,12 +23,12 @@ import org.agorava.TwitterBaseService;
 import org.agorava.twitter.impl.TwitterUserServiceImpl.TwitterProfileList;
 import org.agorava.twitter.model.CursoredList;
 import org.agorava.twitter.model.TwitterProfile;
+import org.agorava.utils.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.google.common.collect.Maps.newHashMap;
 
 /**
  * @author Antoine Sabot-Durand
@@ -88,7 +89,8 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
 
     @Override
     public CursoredList<Long> getFriendIdsInCursor(long userId, long cursor) {
-        Map<String, String> parameters = newHashMap();
+        Map<String, String> parameters = new HashMap();
+        ;
         parameters.put("cursor", String.valueOf(cursor));
         parameters.put("user_id", String.valueOf(userId));
         return getService().get(buildUri("friends/ids.json", parameters), CursoredLongList.class).getList();
@@ -101,7 +103,8 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
 
     @Override
     public CursoredList<Long> getFriendIdsInCursor(String screenName, long cursor) {
-        Map<String, String> parameters = newHashMap();
+        Map<String, String> parameters = new HashMap();
+        ;
         parameters.put("cursor", String.valueOf(cursor));
         parameters.put("screen_name", screenName);
         return getService().get(buildUri("friends/ids.json", parameters), CursoredLongList.class).getList();
@@ -159,7 +162,8 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
 
     @Override
     public CursoredList<Long> getFollowerIdsInCursor(long userId, long cursor) {
-        Map<String, String> parameters = newHashMap();
+        Map<String, String> parameters = new HashMap();
+        ;
         parameters.put("cursor", String.valueOf(cursor));
         parameters.put("user_id", String.valueOf(userId));
         return getService().get(buildUri("followers/ids.json", parameters), CursoredLongList.class).getList();
@@ -172,7 +176,8 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
 
     @Override
     public CursoredList<Long> getFollowerIdsInCursor(String screenName, long cursor) {
-        Map<String, String> parameters = newHashMap();
+        Map<String, String> parameters = new HashMap();
+        ;
         parameters.put("cursor", String.valueOf(cursor));
         parameters.put("screen_name", screenName);
         return getService().get(buildUri("followers/ids.json", parameters), CursoredLongList.class).getList();
@@ -237,7 +242,8 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
     // doesn't require authentication
     @Override
     public boolean friendshipExists(String userA, String userB) {
-        Map<String, String> params = newHashMap();
+        Map<String, String> params = new HashMap();
+        ;
         return getService().get(buildUri("friendships/exists.json", params), boolean.class);
     }
 
@@ -270,7 +276,7 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
         List<List<Long>> chunks = chunkList(userIds, 100);
         CursoredList<TwitterProfile> users = new CursoredList<TwitterProfile>(userIds.size(), previousCursor, nextCursor);
         for (List<Long> userIdChunk : chunks) {
-            String joinedIds = commaJoiner.join(userIdChunk);
+            String joinedIds = StringUtils.join(userIdChunk, ',');
             users.addAll(getService().get(buildUri("users/lookup.json", "user_id", joinedIds),
                     TwitterProfileList.class));
         }
@@ -288,6 +294,8 @@ public class TwitterFriendServiceImpl extends TwitterBaseService implements org.
         return chunkedList;
     }
 
-    private static final Map<String, Object> EMPTY_DATA = newHashMap();
+    private static final Map<String, Object> EMPTY_DATA = new HashMap();
+
+    ;
 
 }

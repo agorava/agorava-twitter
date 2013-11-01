@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  *
  */
@@ -27,10 +28,9 @@ import org.agorava.twitter.model.PlaceType;
 import org.agorava.twitter.model.SimilarPlaces;
 import org.agorava.twitter.model.SimilarPlacesResponse;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.google.common.collect.Maps.newHashMap;
 
 /**
  * @author Antoine Sabot-Durand
@@ -94,7 +94,7 @@ public class TwitterGeoServiceImpl extends TwitterBaseService implements Twitter
 
     private Map<String, String> buildGeoParameters(double latitude, double longitude, PlaceType granularity, String accuracy,
                                                    String query) {
-        Map<String, String> parameters = newHashMap();
+        Map<String, String> parameters = new HashMap();
         parameters.put("lat", String.valueOf(latitude));
         parameters.put("long", String.valueOf(longitude));
         if (granularity != null) {
@@ -112,7 +112,8 @@ public class TwitterGeoServiceImpl extends TwitterBaseService implements Twitter
 
     private Map<String, String> buildPlaceParameters(double latitude, double longitude, String name, String streetAddress,
                                                      String containedWithin) {
-        Map<String, String> parameters = newHashMap();
+        Map<String, String> parameters = new HashMap();
+        ;
         parameters.put("lat", String.valueOf(latitude));
         parameters.put("long", String.valueOf(longitude));
         parameters.put("name", name);
