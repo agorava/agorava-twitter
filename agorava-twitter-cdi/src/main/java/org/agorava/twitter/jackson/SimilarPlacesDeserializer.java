@@ -16,15 +16,15 @@
 
 package org.agorava.twitter.jackson;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.agorava.twitter.model.Place;
 import org.agorava.twitter.model.SimilarPlacesResponse;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.map.JsonDeserializer;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,16 +34,14 @@ class SimilarPlacesDeserializer extends JsonDeserializer<SimilarPlacesResponse> 
     public SimilarPlacesResponse deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException,
             JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.setDeserializationConfig(ctxt.getConfig());
         jp.setCodec(mapper);
-
-        JsonNode tree = jp.readValueAsTree();
-        JsonNode resultNode = tree.get("result");
-        String token = resultNode.get("token").getTextValue();
+        JsonNode node = jp.readValueAs(JsonNode.class);
+        JsonNode resultNode = node.get("result");
+        String token = resultNode.get("token").textValue();
         JsonNode placesNode = resultNode.get("places");
         @SuppressWarnings("unchecked")
-        List<Place> places = (List<Place>) mapper.readValue(placesNode, new TypeReference<List<Place>>() {
-        });
+        List<Place> places = (List<Place>) mapper.reader(new TypeReference<List<Place>>() {
+        }).readValue(placesNode);
         return new SimilarPlacesResponse(places, token);
     }
 }

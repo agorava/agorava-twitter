@@ -16,17 +16,16 @@
 
 package org.agorava.twitter.jackson;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.agorava.twitter.model.Trends;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 /**
  * Holds a Trends object deserialized from Twitter's local trends JSON structure. Provides a convenient place to hang the
- * @JsonDeserialize
- * annotation.
  *
  * @author Craig Walls
  * @author Antoine Sabot-Durand
+ * @JsonDeserialize annotation.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonDeserialize(using = LocalTrendsDeserializer.class)

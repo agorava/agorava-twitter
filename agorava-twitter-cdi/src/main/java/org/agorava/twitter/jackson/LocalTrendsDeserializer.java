@@ -16,13 +16,13 @@
 
 package org.agorava.twitter.jackson;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.agorava.twitter.model.Trend;
 import org.agorava.twitter.model.Trends;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.map.JsonDeserializer;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -52,7 +52,7 @@ class LocalTrendsDeserializer extends JsonDeserializer<LocalTrendsHolder> {
             List<Trend> trends = new ArrayList<Trend>();
             for (Iterator<JsonNode> trendsIt = trendNodes.iterator(); trendsIt.hasNext(); ) {
                 JsonNode trendNode = trendsIt.next();
-                trends.add(new Trend(trendNode.get("name").asText(), trendNode.get("query").getTextValue()));
+                trends.add(new Trend(trendNode.get("name").asText(), trendNode.get("query").textValue()));
             }
             jp.skipChildren();
             return new LocalTrendsHolder(new Trends(createdAt, trends));

@@ -16,6 +16,8 @@
 
 package org.agorava.twitter.jackson;
 
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.agorava.twitter.Twitter;
 import org.agorava.twitter.model.DirectMessage;
 import org.agorava.twitter.model.Place;
@@ -29,8 +31,6 @@ import org.agorava.twitter.model.Trends;
 import org.agorava.twitter.model.Tweet;
 import org.agorava.twitter.model.TwitterProfile;
 import org.agorava.twitter.model.UserList;
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.module.SimpleModule;
 
 /**
  * Jackson module for registering mixin annotations against Twitter model classes.

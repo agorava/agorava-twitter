@@ -16,8 +16,12 @@
 
 package org.agorava.twitter.impl;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.agorava.twitter.model.CursoredList;
-import org.codehaus.jackson.annotate.*;
 
 import java.util.List;
 

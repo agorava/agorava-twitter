@@ -16,10 +16,10 @@
 
 package org.agorava.twitter.jackson;
 
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.Date;
 
@@ -35,7 +35,8 @@ abstract class TwitterProfileMixin {
     @JsonCreator
     TwitterProfileMixin(@JsonProperty("id") String id, @JsonProperty("screen_name") String screenName,
                         @JsonProperty("name") String name, @JsonProperty("url") String url,
-                        @JsonProperty("profile_image_url") String profileImageUrl, @JsonProperty("description") String description,
+                        @JsonProperty("profile_image_url") String profileImageUrl, @JsonProperty("description") String
+            description,
                         @JsonProperty("location") String location,
                         @JsonProperty("created_at") @JsonDeserialize(using = TimelineDateDeserializer.class) Date createdDate) {
     }

@@ -19,6 +19,9 @@
  */
 package org.agorava.twitter.impl;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.agorava.TwitterBaseService;
 import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterUserService;
@@ -26,9 +29,6 @@ import org.agorava.twitter.model.ImageSize;
 import org.agorava.twitter.model.RateLimitStatus;
 import org.agorava.twitter.model.SuggestionCategory;
 import org.agorava.twitter.model.TwitterProfile;
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
