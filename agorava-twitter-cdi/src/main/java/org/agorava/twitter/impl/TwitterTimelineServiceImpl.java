@@ -20,6 +20,7 @@
 package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
+import org.agorava.api.exception.ResponseException;
 import org.agorava.twitter.TwitterTimelineService;
 import org.agorava.twitter.impl.TwitterUserServiceImpl.TwitterProfileList;
 import org.agorava.twitter.model.StatusDetails;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * @author Antoine Sabot-Durand
@@ -44,6 +46,8 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
     private static final String HOME_TIMELINE_URL = "statuses/home_timeline.json";
 
     private static final String PUBLIC_TIMELINE_URL = "statuses/public_timeline.json";
+
+    private static final Logger LOGGER = Logger.getLogger(TwitterTimelineServiceImpl.class.getName());
 
     @Override
     public List<Tweet> getPublicTimeline() {
@@ -250,7 +254,15 @@ public class TwitterTimelineServiceImpl extends TwitterBaseService implements Tw
 
     @Override
     public Tweet getStatus(long tweetId) {
-        return getService().get(buildAbsoluteUri("statuses/show/" + tweetId + ".json"), Tweet.class);
+        try {
+            return getService().get(buildAbsoluteUri("statuses/show/" + tweetId + ".json"), Tweet.class);
+        } catch (ResponseException e) {
+            if (e.getResponse().getCode() == 404)
+                LOGGER.warning("Requested Tweet was not found : " + e.getResponse().getRequest().toString());
+            else
+                throw e;
+            return null;
+        }
     }
 
     @Override
