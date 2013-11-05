@@ -16,7 +16,6 @@
 
 package org.agorava.twitter.jackson;
 
-import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.agorava.twitter.Twitter;
 import org.agorava.twitter.model.DirectMessage;
@@ -42,7 +41,7 @@ import org.agorava.twitter.model.UserList;
 @Twitter
 class TwitterModule extends SimpleModule {
     public TwitterModule() {
-        super("TwitterModule", new Version(1, 0, 0, null));
+        super("TwitterModule");
     }
 
     @Override

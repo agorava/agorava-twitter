@@ -120,12 +120,11 @@ public interface TwitterDirectMessageService {
      * @param toScreenName the screen name of the recipient of the messages.
      * @param text         the message text.
      * @return the {@link DirectMessage}
-     * @throws ApiException                  if there is an error while communicating with Twitter.
-     * @throws InvalidMessageRecipientException
-     *                                       if the recipient is not following the authenticating user.
-     * @throws DuplicateTweetException       if the message duplicates a previously sent message.
-     * @throws MessageTooLongException       if the message length exceeds Twitter's 140 character limit.
-     * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
+     * @throws ApiException                     if there is an error while communicating with Twitter.
+     * @throws InvalidMessageRecipientException if the recipient is not following the authenticating user.
+     * @throws DuplicateTweetException          if the message duplicates a previously sent message.
+     * @throws MessageTooLongException          if the message length exceeds Twitter's 140 character limit.
+     * @throws MissingAuthorizationException    if TwitterTemplate was not created with OAuth credentials.
      */
     DirectMessage sendDirectMessage(String toScreenName, String text);
 
@@ -137,12 +136,11 @@ public interface TwitterDirectMessageService {
      * @param toUserId the Twitter user ID of the recipient of the messages.
      * @param text     the message text.
      * @return the {@link DirectMessage}
-     * @throws ApiException                  if there is an error while communicating with Twitter.
-     * @throws InvalidMessageRecipientException
-     *                                       if the recipient is not following the authenticating user.
-     * @throws DuplicateTweetException       if the message duplicates a previously sent message.
-     * @throws MessageTooLongException       if the message length exceeds Twitter's 140 character limit.
-     * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
+     * @throws ApiException                     if there is an error while communicating with Twitter.
+     * @throws InvalidMessageRecipientException if the recipient is not following the authenticating user.
+     * @throws DuplicateTweetException          if the message duplicates a previously sent message.
+     * @throws MessageTooLongException          if the message length exceeds Twitter's 140 character limit.
+     * @throws MissingAuthorizationException    if TwitterTemplate was not created with OAuth credentials.
      */
     DirectMessage sendDirectMessage(long toUserId, String text);
 

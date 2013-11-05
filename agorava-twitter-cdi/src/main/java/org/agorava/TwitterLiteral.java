@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.agorava;
 
 import org.agorava.twitter.Twitter;
@@ -25,5 +26,6 @@ import javax.enterprise.util.AnnotationLiteral;
 public class TwitterLiteral extends AnnotationLiteral<Twitter> implements Twitter {
 
     private static final long serialVersionUID = 5431958087840055287L;
+
     public static Twitter INSTANCE = new TwitterLiteral();
 }

@@ -57,7 +57,8 @@ public interface TwitterGeoService {
      * @param longitude   the longitude
      * @param granularity the minimal granularity of the places to return. If null, the default granularity (neighborhood) is
      *                    assumed.
-     * @param accuracy    a radius of accuracy around the given point. If given a number, the value is assumed to be in meters. The
+     * @param accuracy    a radius of accuracy around the given point. If given a number,
+     *                    the value is assumed to be in meters. The
      *                    number may be qualified with "ft" to indicate feet. If null, the default accuracy (0m) is assumed.
      * @return a list of {@link Place}s that the point is within
      * @throws ApiException if there is an error while communicating with Twitter.
@@ -81,7 +82,8 @@ public interface TwitterGeoService {
      * @param longitude   the longitude
      * @param granularity the minimal granularity of the places to return. If null, the default granularity (neighborhood) is
      *                    assumed.
-     * @param accuracy    a radius of accuracy around the given point. If given a number, the value is assumed to be in meters. The
+     * @param accuracy    a radius of accuracy around the given point. If given a number,
+     *                    the value is assumed to be in meters. The
      *                    number may be qualified with "ft" to indicate feet. If null, the default accuracy (0m) is assumed.
      * @param query       a free form text value to help find places by name. If null, no query will be applied to the search.
      * @return a list of {@link Place}s that the point is within
@@ -113,7 +115,8 @@ public interface TwitterGeoService {
      * @return a {@link SimilarPlaces} collection, including a token that can be used to create a new place.
      * @throws ApiException if there is an error while communicating with Twitter.
      */
-    SimilarPlaces findSimilarPlaces(double latitude, double longitude, String name, String streetAddress, String containedWithin);
+    SimilarPlaces findSimilarPlaces(double latitude, double longitude, String name, String streetAddress,
+                                    String containedWithin);
 
     /**
      * Creates a new place.

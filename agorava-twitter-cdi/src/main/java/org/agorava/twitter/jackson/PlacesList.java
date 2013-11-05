@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.agorava.api.atinject.BeanResolver;
 import org.agorava.twitter.model.Place;
 
 import java.io.IOException;
@@ -50,7 +51,7 @@ public class PlacesList {
         @SuppressWarnings("unchecked")
         @Override
         public List<Place> deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-            ObjectMapper mapper = new ObjectMapper();
+            ObjectMapper mapper = BeanResolver.getInstance().resolve(ObjectMapper.class);
             jp.setCodec(mapper);
             JsonNode treeNode = (JsonNode) jp.readValueAs(JsonNode.class).get("places");
             return (List<Place>) mapper.reader(new TypeReference<List<Place>>() {

@@ -31,13 +31,13 @@ import java.util.List;
  * @author Antoine Sabot-Durand
  * @author Werner Keil
  */
-public interface TwitterUserService extends UserProfileService{
+public interface TwitterUserService extends UserProfileService {
 
     /**
      * Retrieves the authenticated user's Twitter ID.
      *
      * @return the user's ID at Twitter
-     * @throws AgoravaException                  if there is an error while communicating with Twitter.
+     * @throws AgoravaException              if there is an error while communicating with Twitter.
      * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
      */
     String getProfileId();
@@ -46,7 +46,7 @@ public interface TwitterUserService extends UserProfileService{
      * Retrieves the authenticated user's Twitter screen name
      *
      * @return the user's screen name
-     * @throws AgoravaException                  if there is an error while communicating with Twitter.
+     * @throws AgoravaException              if there is an error while communicating with Twitter.
      * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
      */
     String getScreenName();
@@ -55,7 +55,7 @@ public interface TwitterUserService extends UserProfileService{
      * Retrieves the authenticated user's Twitter profile details.
      *
      * @return a {@link TwitterProfile} object representing the user's profile.
-     * @throws AgoravaException                  if there is an error while communicating with Twitter.
+     * @throws AgoravaException              if there is an error while communicating with Twitter.
      * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
      */
     TwitterProfile getUserProfile();
@@ -107,7 +107,7 @@ public interface TwitterUserService extends UserProfileService{
     /**
      * Searches for up to 20 users that match a given query.
      *
-     * @throws AgoravaException                  if there is an error while communicating with Twitter.
+     * @throws AgoravaException              if there is an error while communicating with Twitter.
      * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
      */
     List<TwitterProfile> searchForUsers(String query);
@@ -117,7 +117,7 @@ public interface TwitterUserService extends UserProfileService{
      *
      * @param page     the page of search results to return
      * @param pageSize the number of {@link TwitterProfile}s per page. Maximum of 20 per page.
-     * @throws AgoravaException                  if there is an error while communicating with Twitter.
+     * @throws AgoravaException              if there is an error while communicating with Twitter.
      * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
      */
     List<TwitterProfile> searchForUsers(String query, int page, int pageSize);
