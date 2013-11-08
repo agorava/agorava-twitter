@@ -35,7 +35,8 @@ public class TwitterTestDeploy {
                 .addPackages(true, new Filter<ArchivePath>() {
                     @Override
                     public boolean include(ArchivePath path) {
-                        return !((path.get().contains("test") || path.get().contains("servlet")));
+                        return !((path.get().contains("test") || path.get().contains("servlet") || path.get().contains
+                                ("jsf")));
                     }
                 }, "org.agorava")
                 .addAsResource("META-INF/services/javax.enterprise.inject.spi.Extension")
