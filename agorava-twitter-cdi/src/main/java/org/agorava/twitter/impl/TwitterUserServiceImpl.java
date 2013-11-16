@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.agorava.utils.StringUtils.join;
+import static org.agorava.api.service.StringUtils.join;
 
 /**
  * @author Antoine Sabot-Durand

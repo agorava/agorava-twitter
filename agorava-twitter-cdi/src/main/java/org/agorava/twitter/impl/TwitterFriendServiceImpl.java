@@ -20,10 +20,10 @@
 package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
+import org.agorava.api.service.StringUtils;
 import org.agorava.twitter.impl.TwitterUserServiceImpl.TwitterProfileList;
 import org.agorava.twitter.model.CursoredList;
 import org.agorava.twitter.model.TwitterProfile;
-import org.agorava.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
