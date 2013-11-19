@@ -30,6 +30,7 @@ import org.agorava.twitter.model.RateLimitStatus;
 import org.agorava.twitter.model.SuggestionCategory;
 import org.agorava.twitter.model.TwitterProfile;
 
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,7 @@ import static org.agorava.api.service.StringUtils.join;
  * @author Antoine Sabot-Durand
  */
 @Twitter
+@Named
 public class TwitterUserServiceImpl extends TwitterBaseService implements TwitterUserService {
 
     /**

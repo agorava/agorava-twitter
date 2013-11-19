@@ -20,9 +20,11 @@
 package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
+import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterDirectMessageService;
 import org.agorava.twitter.model.DirectMessage;
 
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +33,8 @@ import java.util.Map;
 /**
  * @author Antoine Sabot-Durand
  */
+@Twitter
+@Named
 public class TwitterDirectMessageServiceImpl extends TwitterBaseService implements TwitterDirectMessageService {
 
     @SuppressWarnings("serial")

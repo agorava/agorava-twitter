@@ -20,10 +20,12 @@
 package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
+import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterBlockService;
 import org.agorava.twitter.impl.TwitterUserServiceImpl.TwitterProfileList;
 import org.agorava.twitter.model.TwitterProfile;
 
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,8 @@ import java.util.Map;
  * @author Antoine Sabot-Durand
  * @author Craig Walls
  */
+@Twitter
+@Named
 public class TwitterBlockServiceImpl extends TwitterBaseService implements TwitterBlockService {
 
     @SuppressWarnings("serial")

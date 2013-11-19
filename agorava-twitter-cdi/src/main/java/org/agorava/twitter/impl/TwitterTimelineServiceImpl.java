@@ -21,6 +21,7 @@ package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
 import org.agorava.api.exception.ResponseException;
+import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterTimelineService;
 import org.agorava.twitter.impl.TwitterUserServiceImpl.TwitterProfileList;
 import org.agorava.twitter.model.StatusDetails;
@@ -39,6 +40,7 @@ import java.util.logging.Logger;
  * @author Craig Walls
  */
 @Named
+@Twitter
 public class TwitterTimelineServiceImpl extends TwitterBaseService implements TwitterTimelineService {
 
     private static final String USER_TIMELINE_URL = "statuses/user_timeline.json";

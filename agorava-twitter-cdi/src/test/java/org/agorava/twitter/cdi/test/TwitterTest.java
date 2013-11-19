@@ -41,6 +41,7 @@ import java.util.List;
 public class TwitterTest extends TwitterTestDeploy {
 
     @Inject
+    @Twitter
     TwitterTimelineService tl;
 
     @Inject
