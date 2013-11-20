@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,30 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  *
  */
 package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
+import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterGeoService;
 import org.agorava.twitter.jackson.PlacesList;
-import org.agorava.twitter.model.*;
+import org.agorava.twitter.model.Place;
+import org.agorava.twitter.model.PlacePrototype;
+import org.agorava.twitter.model.PlaceType;
+import org.agorava.twitter.model.SimilarPlaces;
+import org.agorava.twitter.model.SimilarPlacesResponse;
 
+import javax.inject.Named;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.google.common.collect.Maps.newHashMap;
 
 /**
  * @author Antoine Sabot-Durand
  * @author Craig Walls
  */
+@Twitter
+@Named
 public class TwitterGeoServiceImpl extends TwitterBaseService implements TwitterGeoService {
 
     @Override
     public Place getPlace(String placeId) {
-        return getService().get(buildUri("geo/id/" + placeId + ".json"), Place.class);
+        return getService().get(buildAbsoluteUri("geo/id/" + placeId + ".json"), Place.class);
     }
 
     @Override
@@ -90,7 +98,7 @@ public class TwitterGeoServiceImpl extends TwitterBaseService implements Twitter
 
     private Map<String, String> buildGeoParameters(double latitude, double longitude, PlaceType granularity, String accuracy,
                                                    String query) {
-        Map<String, String> parameters = newHashMap();
+        Map<String, String> parameters = new HashMap();
         parameters.put("lat", String.valueOf(latitude));
         parameters.put("long", String.valueOf(longitude));
         if (granularity != null) {
@@ -108,7 +116,8 @@ public class TwitterGeoServiceImpl extends TwitterBaseService implements Twitter
 
     private Map<String, String> buildPlaceParameters(double latitude, double longitude, String name, String streetAddress,
                                                      String containedWithin) {
-        Map<String, String> parameters = newHashMap();
+        Map<String, String> parameters = new HashMap();
+        ;
         parameters.put("lat", String.valueOf(latitude));
         parameters.put("long", String.valueOf(longitude));
         parameters.put("name", name);

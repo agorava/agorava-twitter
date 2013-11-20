@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,8 @@
 
 package org.agorava.twitter.jackson;
 
-import org.agorava.Twitter;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.agorava.twitter.Twitter;
 import org.agorava.twitter.model.DirectMessage;
 import org.agorava.twitter.model.Place;
 import org.agorava.twitter.model.RateLimitStatus;
@@ -29,8 +30,6 @@ import org.agorava.twitter.model.Trends;
 import org.agorava.twitter.model.Tweet;
 import org.agorava.twitter.model.TwitterProfile;
 import org.agorava.twitter.model.UserList;
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.module.SimpleModule;
 
 /**
  * Jackson module for registering mixin annotations against Twitter model classes.
@@ -42,7 +41,7 @@ import org.codehaus.jackson.map.module.SimpleModule;
 @Twitter
 class TwitterModule extends SimpleModule {
     public TwitterModule() {
-        super("TwitterModule", new Version(1, 0, 0, null));
+        super("TwitterModule");
     }
 
     @Override

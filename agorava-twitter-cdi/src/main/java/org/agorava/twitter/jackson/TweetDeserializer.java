@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,19 @@
 
 package org.agorava.twitter.jackson;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import org.agorava.twitter.model.Tweet;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import org.agorava.twitter.model.Tweet;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.map.JsonDeserializer;
 
 /**
  * Custom Jackson deserializer for tweets. Tweets can't be simply mapped like other Twitter model objects because the JSON
@@ -63,19 +63,19 @@ class TweetDeserializer extends JsonDeserializer<Tweet> {
         Date createdAt = toDate(tree.get("created_at").asText(), new SimpleDateFormat(dateFormat, Locale.ENGLISH));
         String source = tree.get("source").asText();
         JsonNode toUserIdNode = tree.get("in_reply_to_user_id");
-        Long toUserId = toUserIdNode != null ? toUserIdNode.getLongValue() : null;
+        Long toUserId = toUserIdNode != null ? toUserIdNode.longValue() : null;
         JsonNode languageCodeNode = tree.get("iso_language_code");
         String languageCode = languageCodeNode != null ? languageCodeNode.asText() : null;
         Tweet tweet = new Tweet(id, text, createdAt, fromScreenName, fromImageUrl, toUserId, fromId, languageCode, source);
         JsonNode inReplyToStatusIdNode = tree.get("in_reply_to_status_id");
         Long inReplyToStatusId = inReplyToStatusIdNode != null && !inReplyToStatusIdNode.isNull() ? inReplyToStatusIdNode
-                .getLongValue() : null;
+                .longValue() : null;
         tweet.setInReplyToStatusId(inReplyToStatusId);
         JsonNode retweetCountNode = tree.get("retweet_count");
-        Integer retweetCount = retweetCountNode != null && !retweetCountNode.isNull() ? retweetCountNode.getIntValue() : null;
+        Integer retweetCount = retweetCountNode != null && !retweetCountNode.isNull() ? retweetCountNode.intValue() : null;
         tweet.setRetweetCount(retweetCount);
         JsonNode favoritedNode = tree.get("favorited");
-        boolean favorited = favoritedNode != null && !favoritedNode.isNull() ? favoritedNode.getBooleanValue() : false;
+        boolean favorited = favoritedNode != null && !favoritedNode.isNull() ? favoritedNode.booleanValue() : false;
         tweet.setFavorited(favorited);
         jp.skipChildren();
         return tweet;

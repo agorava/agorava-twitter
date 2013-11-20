@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,25 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  *
  */
 package org.agorava.twitter.impl;
 
 import org.agorava.TwitterBaseService;
-import org.agorava.core.utils.URLUtils;
+import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterDirectMessageService;
 import org.agorava.twitter.model.DirectMessage;
 
+import javax.inject.Named;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.google.common.collect.Maps.newHashMap;
 
 /**
  * @author Antoine Sabot-Durand
  */
+@Twitter
+@Named
 public class TwitterDirectMessageServiceImpl extends TwitterBaseService implements TwitterDirectMessageService {
 
     @SuppressWarnings("serial")
@@ -51,7 +54,7 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
     @Override
     public List<DirectMessage> getDirectMessagesReceived(int page, int pageSize, long sinceId, long maxId) {
 
-        Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
+        Map<String, String> parameters = buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
         return getService().get(buildUri("direct_messages.json", parameters), DirectMessageList.class);
     }
 
@@ -68,38 +71,40 @@ public class TwitterDirectMessageServiceImpl extends TwitterBaseService implemen
     @Override
     public List<DirectMessage> getDirectMessagesSent(int page, int pageSize, long sinceId, long maxId) {
 
-        Map<String, String> parameters = URLUtils.buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
+        Map<String, String> parameters = buildPagingParametersWithCount(page, pageSize, sinceId, maxId);
         return getService().get(buildUri("direct_messages/sent.json", parameters), DirectMessageList.class);
     }
 
     @Override
     public DirectMessage getDirectMessage(long id) {
 
-        return getService().get(buildUri("direct_messages/show/" + id + ".json"), DirectMessage.class);
+        return getService().get(buildAbsoluteUri("direct_messages/show/" + id + ".json"), DirectMessage.class);
     }
 
     @Override
     public DirectMessage sendDirectMessage(String toScreenName, String text) {
 
-        Map<String, Object> data = newHashMap();
+        Map<String, Object> data = new HashMap();
+        ;
         data.put("screen_name", String.valueOf(toScreenName));
         data.put("text", text);
-        return getService().post(buildUri("direct_messages/new.json"), data, DirectMessage.class);
+        return getService().post(buildAbsoluteUri("direct_messages/new.json"), data, DirectMessage.class);
     }
 
     @Override
     public DirectMessage sendDirectMessage(long toUserId, String text) {
 
-        Map<String, Object> data = newHashMap();
+        Map<String, Object> data = new HashMap();
+        ;
         data.put("user_id", String.valueOf(toUserId));
         data.put("text", text);
-        return getService().post(buildUri("direct_messages/new.json"), data, DirectMessage.class);
+        return getService().post(buildAbsoluteUri("direct_messages/new.json"), data, DirectMessage.class);
     }
 
     @Override
     public void deleteDirectMessage(long messageId) {
 
-        getService().delete(buildUri("direct_messages/destroy/" + messageId + ".json"));
+        getService().delete(buildAbsoluteUri("direct_messages/destroy/" + messageId + ".json"));
     }
 
 }

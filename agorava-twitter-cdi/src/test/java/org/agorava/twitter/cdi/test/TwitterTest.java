@@ -16,12 +16,12 @@
 
 package org.agorava.twitter.cdi.test;
 
-import org.agorava.Twitter;
-import org.agorava.core.api.oauth.OAuthService;
-import org.agorava.core.api.oauth.OAuthSession;
-import org.agorava.core.api.oauth.OAuthToken;
-import org.agorava.core.cdi.Current;
-import org.agorava.core.oauth.scribe.OAuthTokenScribe;
+import org.agorava.api.atinject.Current;
+import org.agorava.api.oauth.OAuthService;
+import org.agorava.api.oauth.OAuthSession;
+import org.agorava.api.oauth.Token;
+import org.agorava.api.service.OAuthLifeCycleService;
+import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterTimelineService;
 import org.agorava.twitter.TwitterUserService;
 import org.agorava.twitter.model.SuggestionCategory;
@@ -41,12 +41,20 @@ import java.util.List;
 public class TwitterTest extends TwitterTestDeploy {
 
     @Inject
+    @Twitter
     TwitterTimelineService tl;
+
     @Inject
+    @Twitter
     TwitterUserService userService;
+
     @Inject
     @Twitter
     OAuthService service;
+
+    @Inject
+    OAuthLifeCycleService OAuthLifeCycleService;
+
     @Inject
     @Twitter
     @Current
@@ -54,10 +62,11 @@ public class TwitterTest extends TwitterTestDeploy {
 
     @Before
     public void init() {
-        OAuthToken token = new OAuthTokenScribe("334872715-u75bjYqWyQSYjFMnKeTDZUn8i0QAExjUQ4ENZXH3",
+        Token token = new Token("334872715-u75bjYqWyQSYjFMnKeTDZUn8i0QAExjUQ4ENZXH3",
                 "08QG7HVqDjkr1oH1YfBRWmd0n8EG73CuzJgTjFI0sk");
-        service.getSession().setAccessToken(token);
-        service.initAccessToken();
+        //service.getSession().setAccessToken(token);
+        sessionTest.setAccessToken(token);
+        OAuthLifeCycleService.endDance();
     }
 
     @Test

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,16 @@
 
 package org.agorava.twitter.jackson;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.agorava.twitter.model.Trends;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 /**
- * Holds a Trends object deserialized from Twitter's local trends JSON structure. Provides a convenient place to hang the @JsonDeserialize
- * annotation.
+ * Holds a Trends object deserialized from Twitter's local trends JSON structure. Provides a convenient place to hang the
  *
  * @author Craig Walls
  * @author Antoine Sabot-Durand
+ * @JsonDeserialize annotation.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonDeserialize(using = LocalTrendsDeserializer.class)

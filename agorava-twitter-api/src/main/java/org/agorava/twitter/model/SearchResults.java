@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,11 @@ import java.util.List;
  */
 public class SearchResults {
     private List<Tweet> tweets;
+
     private long maxId;
+
     private long sinceId;
+
     private boolean lastPage;
 
     public SearchResults(List<Tweet> tweets, long maxId, long sinceId) {

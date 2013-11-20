@@ -13,20 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  *
  */
 package org.agorava.twitter.cdi.test;
 
-import org.agorava.Twitter;
-import org.agorava.core.api.oauth.OAuthAppSettings;
-import org.agorava.core.api.oauth.OAuthSession;
-import org.agorava.core.cdi.Current;
-import org.agorava.core.oauth.PropertyOAuthAppSettingsBuilder;
+import org.agorava.api.oauth.application.OAuthAppSettings;
+import org.agorava.api.oauth.application.OAuthApplication;
+import org.agorava.twitter.Twitter;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
 
 /**
@@ -38,20 +35,19 @@ public class TwitterServiceProducer {
     @ApplicationScoped
     @Produces
     @Twitter
-    public OAuthAppSettings produceFirstSetting() {
-        PropertyOAuthAppSettingsBuilder builder = new PropertyOAuthAppSettingsBuilder();
-        return builder.build();
-    }
+    @OAuthApplication
+    public OAuthAppSettings produceSettings;
 
-
-    @SessionScoped
+/*    @SessionScoped
     @Produces
     @Twitter
-    @Current
-    public OAuthSession produceOauthSession(@Twitter @Default OAuthSession session) {
-        return session;
+    //@Current
+    public OAuthSession produceOauthSession() {
+        OAuthSession res = new Builder().qualifier(TwitterLiteral.INSTANCE).build();
+        res.setRepo(new UserSessionRepositoryImpl());
+        return res;
 
-    }
+    }*/
 
 
 }

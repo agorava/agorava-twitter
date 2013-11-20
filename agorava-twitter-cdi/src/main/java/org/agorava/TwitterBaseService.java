@@ -16,10 +16,13 @@
 
 package org.agorava;
 
-import org.agorava.core.api.oauth.OAuthService;
-import org.agorava.core.oauth.AbstractApiService;
+import org.agorava.api.oauth.OAuthService;
+import org.agorava.spi.ProviderApiService;
+import org.agorava.twitter.Twitter;
 
 import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A specialization of {@link OAuthService} to add TwitterRelated specific methods
@@ -27,16 +30,44 @@ import javax.inject.Inject;
  * @author Antoine Sabot-Durand
  */
 
-public abstract class TwitterBaseService extends AbstractApiService {
+public abstract class TwitterBaseService extends ProviderApiService {
+
+    protected static final char MULTI_VALUE_SEPARATOR = ',';
 
     public static final String API_ROOT = "https://api.twitter.com/1.1/";
+
+    public Map<String, String> buildPagingParametersWithCount(int page, int pageSize, long sinceId, long maxId) {
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("page", String.valueOf(page));
+        parameters.put("count", String.valueOf(pageSize));
+        if (sinceId > 0) {
+            parameters.put("since_id", String.valueOf(sinceId));
+        }
+        if (maxId > 0) {
+            parameters.put("max_id", String.valueOf(maxId));
+        }
+        return parameters;
+    }
+
+    public Map<String, String> buildPagingParametersWithPerPage(int page, int pageSize, long sinceId, long maxId) {
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("page", String.valueOf(page));
+        parameters.put("per_page", String.valueOf(pageSize));
+        if (sinceId > 0) {
+            parameters.put("since_id", String.valueOf(sinceId));
+        }
+        if (maxId > 0) {
+            parameters.put("max_id", String.valueOf(maxId));
+        }
+        return parameters;
+    }
 
     @Inject
     @Twitter
     private OAuthService service;
 
     @Override
-    public String buildUri(String uri) {
+    public String buildAbsoluteUri(String uri) {
         return API_ROOT + uri;
     }
 

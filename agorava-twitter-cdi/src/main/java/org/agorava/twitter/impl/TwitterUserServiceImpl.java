@@ -13,33 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  *
  */
 package org.agorava.twitter.impl;
 
-import org.agorava.Twitter;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.agorava.TwitterBaseService;
-import org.agorava.core.api.event.OAuthComplete;
-import org.agorava.core.api.event.SocialEvent;
-import org.agorava.core.utils.URLUtils;
+import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterUserService;
 import org.agorava.twitter.model.ImageSize;
 import org.agorava.twitter.model.RateLimitStatus;
 import org.agorava.twitter.model.SuggestionCategory;
 import org.agorava.twitter.model.TwitterProfile;
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
 
-import javax.enterprise.event.Observes;
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static org.agorava.api.service.StringUtils.join;
+
 /**
  * @author Antoine Sabot-Durand
  */
+@Twitter
+@Named
 public class TwitterUserServiceImpl extends TwitterBaseService implements TwitterUserService {
 
     /**
@@ -74,17 +76,14 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
     static final String VERIFY_CREDENTIALS_URL = "account/verify_credentials.json";
 
     static final String GET_USER_PROFILE_URL = "users/show.json";
+
     static final String SEARCH_USER_URL = "users/search.json";
+
     static final String SUGGESTION_CATEGORIES = "users/suggestions.json";
+
     static final String LOOKUP = "users/lookup.json";
+
     static final String RATE_LIMIT_STATUS = "account/rate_limit_status.json";
-
-
-    public void initMyProfile(@Observes @Twitter OAuthComplete oauthComplete) {
-        //     log.debug("**** Initializing Twitter profile ****");
-        if (oauthComplete.getStatus() == SocialEvent.Status.SUCCESS)
-            oauthComplete.getEventData().setUserProfile(getUserProfile());
-    }
 
     @Override
     public String getProfileId() {
@@ -119,13 +118,13 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
 
     @Override
     public List<TwitterProfile> getUsers(String... userIds) {
-        String joinedIds = URLUtils.commaJoiner.join(userIds);
+        String joinedIds = join(userIds, ',');
         return getService().get(buildUri(LOOKUP, "user_id", joinedIds), TwitterProfileList.class);
     }
 
     @Override
     public List<TwitterProfile> getUsersByName(String... screenNames) {
-        String joinedScreenNames = URLUtils.commaJoiner.join(screenNames);
+        String joinedScreenNames = join(screenNames, ',');
         return getService().get(buildUri(LOOKUP, "screen_name", joinedScreenNames), TwitterProfileList.class);
     }
 
@@ -136,30 +135,30 @@ public class TwitterUserServiceImpl extends TwitterBaseService implements Twitte
 
     @Override
     public List<TwitterProfile> searchForUsers(String query, int page, int pageSize) {
-        Map<String, String> parameters = URLUtils.buildPagingParametersWithPerPage(page, pageSize, 0, 0);
+        Map<String, String> parameters = buildPagingParametersWithPerPage(page, pageSize, 0, 0);
         parameters.put("q", query);
         return getService().get(buildUri(SEARCH_USER_URL, parameters), TwitterProfileList.class);
     }
 
     @Override
     public List<SuggestionCategory> getSuggestionCategories() {
-        return getService().get(buildUri(SUGGESTION_CATEGORIES), SuggestionCategoryList.class);
+        return getService().get(buildAbsoluteUri(SUGGESTION_CATEGORIES), SuggestionCategoryList.class);
     }
 
     @Override
     public List<TwitterProfile> getSuggestions(String slug) {
-        return getService().get(buildUri("users/suggestions/" + slug + ".json"), TwitterProfileUsersList.class)
+        return getService().get(buildAbsoluteUri("users/suggestions/" + slug + ".json"), TwitterProfileUsersList.class)
                 .getList();
     }
 
     @Override
     public RateLimitStatus getRateLimitStatus() {
-        return getService().get(buildUri(RATE_LIMIT_STATUS), RateLimitStatus.class);
+        return getService().get(buildAbsoluteUri(RATE_LIMIT_STATUS), RateLimitStatus.class);
     }
 
     @Override
     public TwitterProfile getUserProfile() {
-        return getService().get(buildUri(VERIFY_CREDENTIALS_URL), TwitterProfile.class);
+        return getService().get(buildAbsoluteUri(VERIFY_CREDENTIALS_URL), TwitterProfile.class);
     }
 
 }

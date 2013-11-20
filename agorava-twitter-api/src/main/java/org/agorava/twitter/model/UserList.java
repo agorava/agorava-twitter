@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,14 +24,23 @@ package org.agorava.twitter.model;
  */
 public class UserList {
     private final long id;
+
     private final String name;
+
     private final String fullName;
+
     private final String uriPath;
+
     private final String description;
+
     private final String slug;
+
     private final boolean isPublic;
+
     private final boolean isFollowing;
+
     private final int memberCount;
+
     private final int subscriberCount;
 
     public UserList(long id, String name, String fullName, String uriPath, String description, String slug, boolean isPublic,

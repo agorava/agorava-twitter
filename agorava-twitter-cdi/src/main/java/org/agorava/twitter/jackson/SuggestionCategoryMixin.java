@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@
 
 package org.agorava.twitter.jackson;
 
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Mixin class for adding Jackson annotations to SuggestionCategory.
@@ -27,6 +27,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 abstract class SuggestionCategoryMixin {
     @JsonCreator
-    SuggestionCategoryMixin(@JsonProperty("name") String name, @JsonProperty("slug") String slug, @JsonProperty("size") int size) {
+    SuggestionCategoryMixin(@JsonProperty("name") String name, @JsonProperty("slug") String slug,
+                            @JsonProperty("size") int size) {
     }
 }

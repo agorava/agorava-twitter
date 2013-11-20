@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,13 @@ import java.util.Date;
  */
 public class DirectMessage {
     private final long id;
+
     private final String text;
+
     private final TwitterProfile sender;
+
     private final TwitterProfile recipient;
+
     private final Date createdAt;
 
     public DirectMessage(long id, String text, TwitterProfile sender, TwitterProfile recipient, Date createdAt) {

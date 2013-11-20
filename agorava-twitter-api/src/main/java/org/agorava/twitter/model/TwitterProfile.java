@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 
 package org.agorava.twitter.model;
 
-import java.util.Date;
+import org.agorava.spi.UserProfile;
 
-import org.agorava.core.api.UserProfile;
+import java.util.Date;
 
 /**
  * Model class representing a Twitter user's profile information.
@@ -31,36 +31,67 @@ public class TwitterProfile extends UserProfile {
     private static final long serialVersionUID = -6675776414312067618L;
 
     private final String screenName;
+
     private final String name;
+
     private final String url;
+
     private final String profileImageUrl;
+
     private final String description;
+
     private final String location;
+
     private final Date createdDate;
+
     private String language;
+
     private int statusesCount;
+
     private int friendsCount;
+
     private int followersCount;
+
     private int favoritesCount;
+
     private int listedCount;
+
     private boolean following;
+
     private boolean followRequestSent;
+
     private boolean isProtected;
+
     private boolean notificationsEnabled;
+
     private boolean verified;
+
     private boolean geoEnabled;
+
     private boolean contributorsEnabled;
+
     private boolean translator;
+
     private String timeZone;
+
     private int utcOffset;
+
     private String sidebarBorderColor;
+
     private String sidebarFillColor;
+
     private String backgroundColor;
+
     private boolean useBackgroundImage;
+
     private String backgroundImageUrl;
+
     private boolean backgroundImageTiled;
+
     private String textColor;
+
     private String linkColor;
+
     private boolean showAllInlineMedia;
 
     public TwitterProfile(String id, String screenName, String name, String url, String profileImageUrl, String description,

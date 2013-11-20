@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,18 @@
 
 package org.agorava.twitter.jackson;
 
-import java.io.IOException;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.agorava.twitter.model.PlaceType;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.map.JsonDeserializer;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
+
+import java.io.IOException;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 class PlaceMixin {
@@ -35,7 +35,8 @@ class PlaceMixin {
     @JsonCreator
     public PlaceMixin(@JsonProperty("id") String id, @JsonProperty("name") String name,
                       @JsonProperty("full_name") String fullName,
-                      @JsonProperty("attributes") @JsonDeserialize(using = StreetAddressDeserializer.class) String streetAddress,
+                      @JsonProperty("attributes") @JsonDeserialize(using = StreetAddressDeserializer.class) String
+                              streetAddress,
                       @JsonProperty("country") String country, @JsonProperty("country_code") String countryCode,
                       @JsonProperty("place_type") @JsonDeserialize(using = PlaceTypeDeserializer.class) PlaceType placeType) {
     }

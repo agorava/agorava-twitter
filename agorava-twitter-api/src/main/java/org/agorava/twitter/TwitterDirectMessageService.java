@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Agorava
+ * Copyright 2013 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,11 @@
 
 package org.agorava.twitter;
 
-import java.util.List;
-
 import org.agorava.twitter.model.DirectMessage;
 import org.agorava.twitter.model.InvalidMessageRecipientException;
 import org.agorava.twitter.model.MessageTooLongException;
+
+import java.util.List;
 
 /**
  * Interface defining the Twitter operations for working with direct messages.
@@ -120,12 +120,11 @@ public interface TwitterDirectMessageService {
      * @param toScreenName the screen name of the recipient of the messages.
      * @param text         the message text.
      * @return the {@link DirectMessage}
-     * @throws ApiException                  if there is an error while communicating with Twitter.
-     * @throws InvalidMessageRecipientException
-     *                                       if the recipient is not following the authenticating user.
-     * @throws DuplicateTweetException       if the message duplicates a previously sent message.
-     * @throws MessageTooLongException       if the message length exceeds Twitter's 140 character limit.
-     * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
+     * @throws ApiException                     if there is an error while communicating with Twitter.
+     * @throws InvalidMessageRecipientException if the recipient is not following the authenticating user.
+     * @throws DuplicateTweetException          if the message duplicates a previously sent message.
+     * @throws MessageTooLongException          if the message length exceeds Twitter's 140 character limit.
+     * @throws MissingAuthorizationException    if TwitterTemplate was not created with OAuth credentials.
      */
     DirectMessage sendDirectMessage(String toScreenName, String text);
 
@@ -137,12 +136,11 @@ public interface TwitterDirectMessageService {
      * @param toUserId the Twitter user ID of the recipient of the messages.
      * @param text     the message text.
      * @return the {@link DirectMessage}
-     * @throws ApiException                  if there is an error while communicating with Twitter.
-     * @throws InvalidMessageRecipientException
-     *                                       if the recipient is not following the authenticating user.
-     * @throws DuplicateTweetException       if the message duplicates a previously sent message.
-     * @throws MessageTooLongException       if the message length exceeds Twitter's 140 character limit.
-     * @throws MissingAuthorizationException if TwitterTemplate was not created with OAuth credentials.
+     * @throws ApiException                     if there is an error while communicating with Twitter.
+     * @throws InvalidMessageRecipientException if the recipient is not following the authenticating user.
+     * @throws DuplicateTweetException          if the message duplicates a previously sent message.
+     * @throws MessageTooLongException          if the message length exceeds Twitter's 140 character limit.
+     * @throws MissingAuthorizationException    if TwitterTemplate was not created with OAuth credentials.
      */
     DirectMessage sendDirectMessage(long toUserId, String text);
 
