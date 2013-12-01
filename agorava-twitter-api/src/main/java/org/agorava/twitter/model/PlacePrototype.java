@@ -16,6 +16,7 @@
 
 package org.agorava.twitter.model;
 
+import org.agorava.api.function.Nameable;
 import org.agorava.twitter.TwitterGeoService;
 
 /**
@@ -26,8 +27,9 @@ import org.agorava.twitter.TwitterGeoService;
  *
  * @author Craig Walls
  * @author Antoine Sabot-Durand
+ * @author Werner Keil
  */
-public class PlacePrototype {
+public class PlacePrototype implements Nameable {
 
     private final double latitude;
 

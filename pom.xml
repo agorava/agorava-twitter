@@ -21,12 +21,11 @@
     <parent>
         <artifactId>agorava-parent</artifactId>
         <groupId>org.agorava</groupId>
-        <version>0.7.0</version>
+        <version>0.7.1-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>agorava-twitter-parent</artifactId>
-    <version>0.7.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -39,7 +38,7 @@
             <dependency>
                 <groupId>org.agorava</groupId>
                 <artifactId>agorava-bom</artifactId>
-                <version>0.7.0</version>
+                <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

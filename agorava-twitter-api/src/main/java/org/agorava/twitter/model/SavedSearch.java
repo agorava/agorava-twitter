@@ -18,14 +18,23 @@ package org.agorava.twitter.model;
 
 import java.util.Date;
 
+import org.agorava.api.function.LongIdentifiable;
+import org.agorava.api.function.Nameable;
+
 /**
  * Represents a saved search.
  *
  * @author Craig Walls
  * @author Antoine Sabot-Durand
+ * @author Werner Keil
  */
-public class SavedSearch {
-    private final long id;
+public class SavedSearch implements LongIdentifiable, Nameable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 333258941953563016L;
+
+	private final long id;
 
     private final String name;
 

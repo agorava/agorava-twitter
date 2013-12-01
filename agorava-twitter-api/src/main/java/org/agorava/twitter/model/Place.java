@@ -16,15 +16,24 @@
 
 package org.agorava.twitter.model;
 
+import org.agorava.api.function.Identifiable;
+import org.agorava.api.function.Nameable;
+
 /**
- * Represents a place that a Twitter user may send a tweet from.
+ * Represents a place that a Twitter user may tweet from.
  *
  * @author Craig Walls
  * @author Antoine Sabot-Durand
+ * @author Werner Keil
  */
-public class Place {
+public class Place implements Identifiable, Nameable {
 
-    private final String id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -9112165211756900468L;
+
+	private final String id;
 
     private final String name;
 

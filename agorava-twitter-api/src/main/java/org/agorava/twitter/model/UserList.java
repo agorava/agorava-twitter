@@ -16,14 +16,23 @@
 
 package org.agorava.twitter.model;
 
+import org.agorava.api.function.LongIdentifiable;
+import org.agorava.api.function.Nameable;
+
 /**
  * Represents a user-defined list.
  *
  * @author Craig Walls
  * @author Antoine Sabot-Durand
+ * @author Werner Keil
  */
-public class UserList {
-    private final long id;
+public class UserList implements LongIdentifiable, Nameable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6584417181953475894L;
+
+	private final long id;
 
     private final String name;
 

@@ -18,14 +18,22 @@ package org.agorava.twitter.model;
 
 import java.util.Date;
 
+import org.agorava.api.function.LongIdentifiable;
+
 /**
  * Represents a direct message.
  *
  * @author Craig Walls
  * @author Antoine Sabot-Durand
+ * @author Werner Keil
  */
-public class DirectMessage {
-    private final long id;
+public class DirectMessage implements LongIdentifiable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3414717122655111525L;
+
+	private final long id;
 
     private final String text;
 

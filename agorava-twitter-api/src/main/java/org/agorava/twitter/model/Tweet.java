@@ -18,26 +18,34 @@ package org.agorava.twitter.model;
 
 import java.util.Date;
 
+import org.agorava.api.function.LongIdentifiable;
+
 /**
  * Represents a Twitter status update (e.g., a "tweet").
  *
  * @author Craig Walls
  * @author Antoine Sabot-Durand
+ * @author Werner Keil
  */
-public class Tweet {
-    private long id;
+public class Tweet implements LongIdentifiable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5804753278496131500L;
 
-    private String text;
+	private final long id;
 
-    private Date createdAt;
+    private final String text;
 
-    private String fromUser;
+    private final Date createdAt;
+
+    private final String fromUser;
 
     private String profileImageUrl;
 
-    private Long toUserId;
+    private long toUserId;
 
-    private Long inReplyToStatusId;
+    private long inReplyToStatusId;
 
     private long fromUserId;
 
@@ -47,7 +55,7 @@ public class Tweet {
 
     private String source;
 
-    private Integer retweetCount;
+    private int retweetCount;
 
     public Tweet(long id, String text, Date createdAt, String fromUser, String profileImageUrl, Long toUserId, long fromUserId,
                  String languageCode, String source) {
@@ -65,34 +73,38 @@ public class Tweet {
     public String getText() {
         return text;
     }
-
-    public void setText(String text) {
-        this.text = text;
-    }
+    
+ // TODO setter is currently unused, clarify, if Twitter API requires it or we can leave this immutable
+//    public void setText(String text) {
+//        this.text = text;
+//    }
 
     public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+ // TODO setter is currently unused, clarify, if Twitter API requires it or we can leave this immutable
+//    public void setCreatedAt(Date createdAt) {
+//        this.createdAt = createdAt;
+//    }
 
     public String getFromUser() {
         return fromUser;
     }
 
-    public void setFromUser(String fromUser) {
-        this.fromUser = fromUser;
-    }
+ // TODO setter is currently unused, clarify, if Twitter API requires it or we can leave this immutable
+//    public void setFromUser(String fromUser) {
+//        this.fromUser = fromUser;
+//    }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    // TODO setter is currently unused, clarify, if Twitter API requires it or we can leave this immutable
+//    public void setId(long id) {
+//        this.id = id;
+//    }
 
     public String getProfileImageUrl() {
         return profileImageUrl;
@@ -106,7 +118,7 @@ public class Tweet {
         return toUserId;
     }
 
-    public void setToUserId(Long toUserId) {
+    public void setToUserId(long toUserId) {
         this.toUserId = toUserId;
     }
 
@@ -114,7 +126,7 @@ public class Tweet {
         return fromUserId;
     }
 
-    public void setInReplyToStatusId(Long inReplyToStatusId) {
+    public void setInReplyToStatusId(long inReplyToStatusId) {
         this.inReplyToStatusId = inReplyToStatusId;
     }
 
@@ -142,7 +154,7 @@ public class Tweet {
         this.source = source;
     }
 
-    public void setRetweetCount(Integer retweetCount) {
+    public void setRetweetCount(int retweetCount) {
         this.retweetCount = retweetCount;
     }
 
@@ -150,7 +162,7 @@ public class Tweet {
      * The number of times this tweet has been retweeted. Only available in timeline results. getRetweetCount() will return null
      * for Tweet objects returned in search results.
      */
-    public Integer getRetweetCount() {
+    public int getRetweetCount() {
         return retweetCount;
     }
 
