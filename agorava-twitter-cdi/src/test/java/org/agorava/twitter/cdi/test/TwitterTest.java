@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 Agorava
+ * Copyright 2014 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,14 @@
 
 package org.agorava.twitter.cdi.test;
 
+import org.agorava.TwitterLiteral;
+import org.agorava.api.atinject.BeanResolver;
 import org.agorava.api.atinject.Current;
 import org.agorava.api.oauth.OAuthService;
 import org.agorava.api.oauth.OAuthSession;
 import org.agorava.api.oauth.Token;
 import org.agorava.api.service.OAuthLifeCycleService;
+import org.agorava.api.storage.UserSessionRepository;
 import org.agorava.twitter.Twitter;
 import org.agorava.twitter.TwitterTimelineService;
 import org.agorava.twitter.TwitterUserService;
@@ -29,13 +32,13 @@ import org.agorava.twitter.model.Tweet;
 import org.agorava.twitter.model.TwitterProfile;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.inject.Inject;
 import java.util.Date;
 import java.util.List;
+import javax.inject.Inject;
 
 @RunWith(Arquillian.class)
 public class TwitterTest extends TwitterTestDeploy {
@@ -52,21 +55,31 @@ public class TwitterTest extends TwitterTestDeploy {
     @Twitter
     OAuthService service;
 
-    @Inject
-    OAuthLifeCycleService OAuthLifeCycleService;
 
     @Inject
-    @Twitter
     @Current
     OAuthSession sessionTest;
 
-    @Before
-    public void init() {
+    @BeforeClass
+    public static void init() {
+
         Token token = new Token("334872715-u75bjYqWyQSYjFMnKeTDZUn8i0QAExjUQ4ENZXH3",
                 "08QG7HVqDjkr1oH1YfBRWmd0n8EG73CuzJgTjFI0sk");
-        //service.getSession().setAccessToken(token);
-        sessionTest.setAccessToken(token);
-        OAuthLifeCycleService.endDance();
+
+        OAuthLifeCycleService lfs = BeanResolver.getInstance().resolve(OAuthLifeCycleService.class);
+
+        UserSessionRepository r = lfs.getCurrentRepository();
+
+        OAuthSession session = new OAuthSession.Builder()
+                .qualifier(TwitterLiteral.INSTANCE)
+                .repo(r)
+                .accessToken(token)
+                .build();
+
+        r.add(session);
+        r.setCurrent(session);
+
+        lfs.endDance();
     }
 
     @Test
