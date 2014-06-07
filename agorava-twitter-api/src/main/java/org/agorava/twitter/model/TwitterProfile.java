@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 Agorava
+ * Copyright 2014 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -95,7 +95,7 @@ public class TwitterProfile extends UserProfile {
     private boolean showAllInlineMedia;
 
     public TwitterProfile(String id, String screenName, String name, String url, String profileImageUrl, String description,
-                          String location, Date createdDate) {
+            String location, Date createdDate) {
         super(id);
         this.screenName = screenName;
         this.name = name;
@@ -363,6 +363,21 @@ public class TwitterProfile extends UserProfile {
     @Override
     public String getFullName() {
         return getName();
+    }
+
+    @Override
+    public String getFirstName() {
+        return getName();
+    }
+
+    @Override
+    public String getLastName() {
+        return getScreenName();
+    }
+
+    @Override
+    public String getEmail() {
+        return "";
     }
 
 }
