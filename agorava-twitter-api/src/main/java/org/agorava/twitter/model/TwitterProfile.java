@@ -17,6 +17,7 @@
 package org.agorava.twitter.model;
 
 import org.agorava.spi.UserProfile;
+import org.agorava.twitter.Twitter;
 
 import java.util.Date;
 
@@ -96,7 +97,7 @@ public class TwitterProfile extends UserProfile {
 
     public TwitterProfile(String id, String screenName, String name, String url, String profileImageUrl, String description,
             String location, Date createdDate) {
-        super(id);
+        super(id, Twitter.class);
         this.screenName = screenName;
         this.name = name;
         this.url = url;
