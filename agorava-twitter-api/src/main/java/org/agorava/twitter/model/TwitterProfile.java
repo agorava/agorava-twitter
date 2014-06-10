@@ -362,6 +362,11 @@ public class TwitterProfile extends UserProfile {
     }
 
     @Override
+    public String getLoginName() {
+        return getScreenName();
+    }
+
+    @Override
     public String getFullName() {
         return getName();
     }
