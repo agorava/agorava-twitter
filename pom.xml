@@ -30,8 +30,8 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>agorava-twitter-api</module><!-- 
-		<module>agorava-twitter-cdi</module>  -->
+		<module>agorava-twitter-api</module>
+		<module>agorava-twitter-cdi</module>
 	</modules>
 
 	<dependencyManagement>
