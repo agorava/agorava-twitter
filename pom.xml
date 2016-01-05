@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ Copyright 2014 Agorava
+  ~ Copyright 2016 Agorava
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -27,12 +27,11 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>agorava-twitter-parent</artifactId>
-	<version>0.7.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>agorava-twitter-api</module>
-		<module>agorava-twitter-cdi</module>
+		<module>agorava-twitter-api</module><!-- 
+		<module>agorava-twitter-cdi</module>  -->
 	</modules>
 
 	<dependencyManagement>
@@ -63,4 +62,30 @@
 		<url>http://github.com/agorava/agorava-twitter</url>
 		<tag>HEAD</tag>
 	</scm>
+	
+	<!-- Additional repositories -->
+	<!-- Helps to resolve Parent POM and Snapshot artifacts -->
+	<repositories>
+		<repository>
+			<id>jcenter</id>
+			<name>JCenter</name>
+			<url>http://jcenter.bintray.com</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>bintray-release</id>
+			<name>libs-release</name>
+			<url>http://oss.jfrog.org/artifactory/libs-release</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>bintray-snapshot</id>
+			<name>libs-snapshot</name>
+			<url>http://oss.jfrog.org/artifactory/libs-snapshot</url>
+		</repository>
+	</repositories>
 </project>
