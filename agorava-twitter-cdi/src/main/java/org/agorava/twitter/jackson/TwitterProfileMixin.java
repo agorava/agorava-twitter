@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 Agorava
+ * Copyright 2016 Agorava
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import java.util.Date;
  *
  * @author Craig Walls
  * @author Antoine Sabot-Durand
+ * @author Werner Keil
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-@SuppressWarnings("unused")
 abstract class TwitterProfileMixin {
     @JsonCreator
     TwitterProfileMixin(@JsonProperty("id") String id, @JsonProperty("screen_name") String screenName,
